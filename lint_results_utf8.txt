@@ -1,0 +1,138 @@
+﻿
+> kickoffto@0.1.0 lint
+> next lint
+
+
+./src/app/agents/page.tsx
+86:22  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+249:31  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+249:43  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./src/app/agents/[agentId]/page.tsx
+147:11  Warning: 'team' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/api/chat/route.ts
+48:29  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/monitoring/vercel-status/route.ts
+180:26  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/api/reddit/route.ts
+22:23  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+23:20  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/brackets/page.tsx
+193:6  Warning: React Hook useEffect has a missing dependency: 'champion'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+./src/app/community/page.tsx
+4:38  Warning: 'Hash' is defined but never used.  @typescript-eslint/no-unused-vars
+235:34  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/app/live/page.tsx
+4:8  Warning: 'Link' is defined but never used.  @typescript-eslint/no-unused-vars
+161:31  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+189:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/standings/page.tsx
+5:23  Warning: 'Team' is defined but never used.  @typescript-eslint/no-unused-vars
+66:24  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+113:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+283:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+355:49  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+355:58  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./src/app/stats/page.tsx
+12:3  Warning: 'Flag' is defined but never used.  @typescript-eslint/no-unused-vars
+119:54  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/teams/page.tsx
+57:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/teams/[teamId]/page.tsx
+4:23  Warning: 'Team' is defined but never used.  @typescript-eslint/no-unused-vars
+80:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+119:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+119:11  Warning: img elements must have an alt prop, either with meaningful text, or an empty string for decorative images.  jsx-a11y/alt-text
+126:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/layout/LiveTicker.tsx
+9:41  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+27:41  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/components/pwa/PWAInstallPrompt.tsx
+30:32  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/components/teams/PlayerModal.tsx
+107:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+183:21  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+183:39  Warning: `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`.  react/no-unescaped-entities
+
+./src/components/ui/TeamPicker.tsx
+8:3  Warning: 'TeamInfo' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/context/FavoriteTeamContext.tsx
+404:16  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+411:52  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/hooks/usePWA.ts
+25:30  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/hooks/useVercelMonitoring.ts
+110:20  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/lib/performance/intelligentCache.ts
+38:46  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+270:39  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+304:11  Warning: 'now' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+327:52  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/lib/performance/metricsLogger.ts
+20:29  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/lib/performance/rateLimitManager.ts
+63:24  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+64:23  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+65:32  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+342:34  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/lib/performance/resourceMonitor.ts
+432:13  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/lib/performance/vercelOptimizer.ts
+153:20  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+154:22  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+160:13  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+216:51  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+251:48  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+287:48  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+290:9  Warning: '_' is defined but never used.  @typescript-eslint/no-unused-vars
+313:52  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+354:51  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+465:22  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+466:24  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/lib/reddit/redditService.ts
+10:3  Warning: 'RedditPost' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/middleware/rateLimitMiddleware.ts
+38:5  Warning: 'response' is defined but never used.  @typescript-eslint/no-unused-vars
+165:11  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/types/ai-agents.ts
+3:23  Warning: 'Competition' is defined but never used.  @typescript-eslint/no-unused-vars
+3:36  Warning: 'User' is defined but never used.  @typescript-eslint/no-unused-vars
+25:29  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+33:29  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+277:28  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/utils/index.ts
+80:46  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+80:56  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+94:46  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+94:56  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/utils/serviceWorker.ts
+82:53  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+82:67  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules

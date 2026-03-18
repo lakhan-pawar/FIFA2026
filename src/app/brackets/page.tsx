@@ -190,7 +190,7 @@ export default function BracketsPage() {
       setShowConfetti(true);
       setTimeout(() => setShowConfetti(false), 4000);
     }
-  }, [predictions, isMounted]);
+  }, [predictions, isMounted, champion]);
 
   const getLabel = useCallback(
     (matchId: string, pairing: [string, string], idx: number): string => {

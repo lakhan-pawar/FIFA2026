@@ -144,7 +144,7 @@ export default function AgentChatPage({
 }) {
   const router = useRouter();
   const agent = getAgentById(params.agentId);
-  const { team } = useFavoriteTeam();
+  const { team: _team } = useFavoriteTeam();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);

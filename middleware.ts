@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 
-export async function middleware(request: NextRequest) {
+export async function middleware(_request: NextRequest) {
   // Simple pass-through for now, can add rate limiting headers later.
   return NextResponse.next();
 }

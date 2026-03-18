@@ -35,7 +35,7 @@ export function createRateLimitMiddleware(
 
   return async function rateLimitMiddleware(
     request: NextRequest,
-    response?: NextResponse
+    _response?: NextResponse
   ): Promise<NextResponse | void> {
     const startTime = Date.now();
     const pathname = request.nextUrl.pathname;

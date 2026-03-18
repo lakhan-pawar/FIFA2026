@@ -6,11 +6,7 @@
 import { RedditClient } from './redditClient';
 import { RedditContentFilter } from './contentFilter';
 import { RedditContentModerator } from './contentModerator';
-import type {
-  RedditPost,
-  RedditFetchOptions,
-  ModeratedContent,
-} from '@/types/reddit';
+import type { RedditFetchOptions, ModeratedContent } from '@/types/reddit';
 
 export class RedditService {
   private client: RedditClient;

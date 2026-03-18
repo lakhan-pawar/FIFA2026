@@ -9,7 +9,6 @@ import {
   Globe2,
   BarChart,
   Star,
-  Flag,
 } from 'lucide-react';
 import { useFavoriteTeam } from '@/context/FavoriteTeamContext';
 
@@ -116,7 +115,7 @@ export default function StandingsPage() {
       {
         rank: string;
         finish: string;
-        extra: { label: string; value: string; icon: any };
+        extra: { label: string; value: string; icon: () => JSX.Element };
       }
     > = {
       argentina: {

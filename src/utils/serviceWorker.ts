@@ -79,7 +79,7 @@ export function isServiceWorkerActive(): boolean {
 /**
  * Send message to service worker
  */
-export function sendMessageToServiceWorker(message: any): Promise<any> {
+export function sendMessageToServiceWorker(message: unknown): Promise<unknown> {
   return new Promise((resolve, reject) => {
     if (
       !isClient ||

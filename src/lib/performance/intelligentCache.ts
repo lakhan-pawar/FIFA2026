@@ -301,7 +301,6 @@ class IntelligentCache {
    * Clean up expired entries
    */
   private cleanup(): void {
-    const now = Date.now();
     const entries = Array.from(this.cache.entries());
 
     for (const [key, entry] of entries) {

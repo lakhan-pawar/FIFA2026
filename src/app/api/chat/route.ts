@@ -45,7 +45,7 @@ Your responses should be written exactly in your character's voice. Be concise, 
     const chatCompletion = await groq.chat.completions.create({
       messages: [
         { role: 'system', content: systemPrompt },
-        ...messages.map((m: any) => ({
+        ...messages.map((m: { role: string; content: string }) => ({
           role: m.role,
           content: m.content,
         })),

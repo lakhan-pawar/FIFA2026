@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { useFavoriteTeam } from '@/context/FavoriteTeamContext';
 
 function useCountdown(target: Date) {
@@ -158,7 +157,7 @@ export default function LivePage() {
         <div className="flex items-center gap-3 mb-4">
           <span className="text-2xl">{displayTeam.flag}</span>
           <h2 className="font-display text-2xl">
-            {displayTeam.name}'s{' '}
+            {displayTeam.name}&apos;s{' '}
             <span className="text-[var(--accent-2)]">Journey</span>
           </h2>
         </div>

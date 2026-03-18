@@ -1,6 +1,7 @@
 // Script to initialize World Cup 2026 bracket data
 // Run with: node scripts/initializeBracket.js
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const { createClient } = require('@supabase/supabase-js');
 
 // Bracket data structure

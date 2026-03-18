@@ -6,7 +6,7 @@ export function LiveTicker() {
       <div className="whitespace-nowrap animate-ticker inline-block hover:[animation-play-state:paused] font-mono text-[13px] font-semibold tracking-wide">
         <span className="inline-flex items-center gap-2 mx-8">
           <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse-live" />
-          LIVE Arsenal 2–1 Man City · 73'
+          LIVE Arsenal 2–1 Man City · 73&apos;
         </span>
         <span className="mx-8 opacity-40">|</span>
         <span className="inline-flex items-center gap-2 mx-8">
@@ -24,7 +24,7 @@ export function LiveTicker() {
         {/* duplicate for seamless loop */}
         <span className="inline-flex items-center gap-2 mx-8">
           <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse-live" />
-          LIVE Arsenal 2–1 Man City · 73'
+          LIVE Arsenal 2–1 Man City · 73&apos;
         </span>
         <span className="mx-8 opacity-40">|</span>
         <span className="inline-flex items-center gap-2 mx-8">

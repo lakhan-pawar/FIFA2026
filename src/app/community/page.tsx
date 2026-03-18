@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { ArrowBigUp, Clock, Loader2, Hash } from 'lucide-react';
+import { ArrowBigUp, Clock, Loader2 } from 'lucide-react';
 import { useFavoriteTeam } from '@/context/FavoriteTeamContext';
 
 interface RedditPost {
@@ -232,7 +232,7 @@ export default function CommunityPage() {
           Fan <span className="text-[var(--accent-3)]">Pulse</span>
         </h1>
         <p className="text-sm text-[var(--muted)]">
-          Real talk from football's loudest corners of the internet.
+          Real talk from football&apos;s loudest corners of the internet.
         </p>
       </div>
 

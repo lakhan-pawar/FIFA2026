@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Search, Info, Star } from 'lucide-react';
-import { MAJOR_TEAMS, Team } from '@/lib/teams';
+import { MAJOR_TEAMS } from '@/lib/teams';
 import Link from 'next/link';
 import { useFavoriteTeam } from '@/context/FavoriteTeamContext';
 
@@ -63,7 +63,7 @@ function GroupCard({
           </h3>
           {isFavGroup && (
             <span className="text-[9px] font-bold uppercase tracking-widest text-[var(--accent)] bg-[var(--accent)]/10 px-2 py-0.5 rounded-full border border-[var(--accent)]/20">
-              Your Team's Group
+              Your Team&apos;s Group
             </span>
           )}
         </div>
@@ -352,7 +352,7 @@ export default function StandingsPage() {
       {sortedGroups.length === 0 && (
         <div className="py-20 text-center text-[var(--muted)] border border-[var(--border)] border-dashed rounded-3xl">
           <p className="text-xl mb-2">🔍</p>
-          <p className="text-sm">No results for "{search}"</p>
+          <p className="text-sm">No results for &quot;{search}&quot;</p>
         </div>
       )}
     </div>

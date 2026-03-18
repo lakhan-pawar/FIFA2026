@@ -19,22 +19,38 @@ export async function GET() {
     const data = await response.json();
 
     const posts = data.data.children
-      .filter((child: any) => !child.data.stickied && !child.data.over_18)
-      .map((child: any) => {
-        const d = child.data;
-        return {
-          id: d.id,
-          title: d.title,
-          author: d.author,
-          score: d.score,
-          num_comments: d.num_comments,
-          subreddit: d.subreddit_name_prefixed,
-          created_utc: d.created_utc,
-          permalink: d.permalink,
-          url: d.url,
-          is_video: d.is_video,
-        };
-      });
+      .filter(
+        (child: { data: { stickied: boolean; over_18: boolean } }) =>
+          !child.data.stickied && !child.data.over_18
+      )
+      .map(
+        (child: {
+          data: {
+            id: string;
+            title: string;
+            author: string;
+            score: number;
+            num_comments: number;
+            created_utc: number;
+            permalink: string;
+            subreddit: string;
+          };
+        }) => {
+          const d = child.data;
+          return {
+            id: d.id,
+            title: d.title,
+            author: d.author,
+            score: d.score,
+            num_comments: d.num_comments,
+            subreddit: d.subreddit_name_prefixed,
+            created_utc: d.created_utc,
+            permalink: d.permalink,
+            url: d.url,
+            is_video: d.is_video,
+          };
+        }
+      );
 
     return NextResponse.json({ posts });
   } catch (error) {

@@ -83,8 +83,9 @@ export default function AgentsPage() {
             transition={{ delay: 0.2 }}
             className="text-[var(--muted)] text-base md:text-lg max-w-2xl leading-relaxed"
           >
-            The world's most advanced football minds, reconstructed with neural
-            precision. Select an expert to begin your strategic immersion.
+            The world&apos;s most advanced football minds, reconstructed with
+            neural precision. Select an expert to begin your strategic
+            immersion.
           </motion.p>
         </div>
       </header>
@@ -246,7 +247,7 @@ export default function AgentsPage() {
                               Typical Inquiry
                             </p>
                             <p className="text-xs font-medium text-[var(--text)] italic leading-snug">
-                              "{preview.q}"
+                              &quot;{preview.q}&quot;
                             </p>
                           </div>
                         </motion.div>

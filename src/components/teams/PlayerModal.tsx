@@ -180,7 +180,7 @@ export function PlayerModal({
                 <div className="p-4 rounded-xl bg-gradient-to-br from-[var(--bg-2)] to-[var(--bg)] border border-[var(--border)] relative overflow-hidden">
                   <Star className="absolute -right-4 -bottom-4 w-16 h-16 text-[var(--accent)] opacity-10" />
                   <p className="text-sm italic text-[var(--text-2)] leading-relaxed relative z-10">
-                    "{profile.keyFact}"
+                    &quot;{profile.keyFact}&quot;
                   </p>
                 </div>
 

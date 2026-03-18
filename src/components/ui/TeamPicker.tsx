@@ -2,11 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  TEAMS,
-  useFavoriteTeam,
-  TeamInfo,
-} from '@/context/FavoriteTeamContext';
+import { TEAMS, useFavoriteTeam } from '@/context/FavoriteTeamContext';
 import { X, Check, Search } from 'lucide-react';
 
 interface TeamPickerProps {

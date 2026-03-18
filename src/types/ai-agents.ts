@@ -1,6 +1,6 @@
 // AI Agent types and interfaces for KickoffTo platform
 
-import { Match, Team, Competition, User } from './index';
+import { Match, Team } from './index';
 
 // Core AI Agent interfaces
 export interface AIAgentContext {
@@ -22,7 +22,7 @@ export interface ConversationMessage {
   content: string;
   timestamp: Date;
   agentId: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface AIAgentResponse {
@@ -30,7 +30,7 @@ export interface AIAgentResponse {
   confidence: number;
   sources?: string[];
   suggestedFollowUps?: string[];
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface AIAgentCapabilities {
@@ -274,7 +274,7 @@ export interface LeagueInfo {
   name: string;
   teams: string[];
   currentSeason: string;
-  keyStats: Record<string, any>;
+  keyStats: Record<string, unknown>;
   upcomingMatches: Match[];
 }
 

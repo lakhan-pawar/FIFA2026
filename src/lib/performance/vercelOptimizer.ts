@@ -287,7 +287,7 @@ class VercelOptimizer {
   private async applyCircuitBreaker(): Promise<any> {
     const healthStatus = circuitBreakerManager.getHealthStatus();
     const unhealthyServices = Object.entries(healthStatus).filter(
-      ([_, status]) => !status.healthy
+      ([, status]) => !status.healthy
     );
 
     if (unhealthyServices.length > 0) {

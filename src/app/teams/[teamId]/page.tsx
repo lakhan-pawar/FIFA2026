@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getTeamById, Team } from '@/lib/teams';
+import { getTeamById } from '@/lib/teams';
 import {
   fetchTeamDetails,
   fetchTeamSquad,
@@ -118,6 +118,7 @@ export default function TeamProfilePage({
         <div className="absolute -right-10 -top-10 opacity-5 pointer-events-none">
           <img
             src={`https://flagcdn.com/w320/${team.flagCode}.png`}
+            alt={`${team.name} flag background`}
             className="w-64 h-64 object-cover rounded-full"
           />
         </div>
