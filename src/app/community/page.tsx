@@ -18,10 +18,10 @@ interface RedditPost {
 const SUBREDDITS = ['All', 'r/soccer', 'r/CanadaSoccer', 'r/MLS', 'r/worldcup'];
 
 const SUB_COLORS: Record<string, string> = {
-  'r/soccer':       '#ff4d6d',
+  'r/soccer': '#ff4d6d',
   'r/CanadaSoccer': '#cc0000',
-  'r/MLS':          '#00e5a0',
-  'r/worldcup':     '#7c3aed',
+  'r/MLS': '#00e5a0',
+  'r/worldcup': '#7c3aed',
 };
 
 function formatScore(n: number) {
@@ -32,23 +32,82 @@ function getHoursAgo(utc: number) {
 }
 
 // Keyword-based sentiment
-function getSentiment(title: string): { label: 'Hype' | 'Debate' | 'Drama'; color: string; emoji: string } {
+function getSentiment(title: string): {
+  label: 'Hype' | 'Debate' | 'Drama';
+  color: string;
+  emoji: string;
+} {
   const t = title.toLowerCase();
-  const drama = ['red card', 'injury', 'controversy', 'ban', 'suspended', 'racist', 'cheat', 'crash', 'fired', 'resign', 'disaster'];
-  const debate = ['vs', 'better', 'worst', 'overrated', 'underrated', 'should', 'think', 'opinion', 'hot take', 'unpopular', 'disagree'];
-  if (drama.some(w => t.includes(w))) return { label: 'Drama', color: '#ff4d6d', emoji: '🔴' };
-  if (debate.some(w => t.includes(w))) return { label: 'Debate', color: '#ffd700', emoji: '🟡' };
+  const drama = [
+    'red card',
+    'injury',
+    'controversy',
+    'ban',
+    'suspended',
+    'racist',
+    'cheat',
+    'crash',
+    'fired',
+    'resign',
+    'disaster',
+  ];
+  const debate = [
+    'vs',
+    'better',
+    'worst',
+    'overrated',
+    'underrated',
+    'should',
+    'think',
+    'opinion',
+    'hot take',
+    'unpopular',
+    'disagree',
+  ];
+  if (drama.some((w) => t.includes(w)))
+    return { label: 'Drama', color: '#ff4d6d', emoji: '🔴' };
+  if (debate.some((w) => t.includes(w)))
+    return { label: 'Debate', color: '#ffd700', emoji: '🟡' };
   return { label: 'Hype', color: '#00e5a0', emoji: '🟢' };
 }
 
 // Extract trending topics from post titles
 function extractTopics(posts: RedditPost[], favTeamName?: string): string[] {
   const keywords: Record<string, number> = {};
-  const stop = new Set(['the', 'a', 'an', 'is', 'in', 'at', 'for', 'to', 'of', 'and', 'or', 'but', 'with', 'on', 'this', 'that', 'are', 'was', 'has', 'have', 'be', 'it', 'as', 'i', 'he', 'she', 'they']);
-  posts.forEach(p => {
-    p.title.split(/\s+/).forEach(w => {
+  const stop = new Set([
+    'the',
+    'a',
+    'an',
+    'is',
+    'in',
+    'at',
+    'for',
+    'to',
+    'of',
+    'and',
+    'or',
+    'but',
+    'with',
+    'on',
+    'this',
+    'that',
+    'are',
+    'was',
+    'has',
+    'have',
+    'be',
+    'it',
+    'as',
+    'i',
+    'he',
+    'she',
+    'they',
+  ]);
+  posts.forEach((p) => {
+    p.title.split(/\s+/).forEach((w) => {
       const clean = w.toLowerCase().replace(/[^a-z]/g, '');
-      if (clean.length > 3 && !stop.has(clean)) keywords[clean] = (keywords[clean] || 0) + 1;
+      if (clean.length > 3 && !stop.has(clean))
+        keywords[clean] = (keywords[clean] || 0) + 1;
     });
   });
   const sorted = Object.entries(keywords)
@@ -58,7 +117,7 @@ function extractTopics(posts: RedditPost[], favTeamName?: string): string[] {
   // Prioritize favorite team if present
   if (favTeamName) {
     const fav = favTeamName.toLowerCase();
-    const favIdx = sorted.findIndex(t => t.toLowerCase() === fav);
+    const favIdx = sorted.findIndex((t) => t.toLowerCase() === fav);
     if (favIdx !== -1) {
       const [item] = sorted.splice(favIdx, 1);
       sorted.unshift(item);
@@ -88,28 +147,42 @@ function PostCard({ post }: { post: RedditPost }) {
       <div className="flex items-center gap-2 mb-2">
         <span
           className="text-[10px] font-bold px-2 py-0.5 rounded-full border"
-          style={{ color: subColor, background: `${subColor}15`, borderColor: `${subColor}30` }}
+          style={{
+            color: subColor,
+            background: `${subColor}15`,
+            borderColor: `${subColor}30`,
+          }}
         >
           {post.subreddit}
         </span>
         {/* Sentiment dot */}
         <span
           className="text-[10px] font-bold px-2 py-0.5 rounded-full border flex items-center gap-1"
-          style={{ color: sentiment.color, background: `${sentiment.color}12`, borderColor: `${sentiment.color}25` }}
+          style={{
+            color: sentiment.color,
+            background: `${sentiment.color}12`,
+            borderColor: `${sentiment.color}25`,
+          }}
         >
           {sentiment.emoji} {sentiment.label}
         </span>
         <span className="text-[10px] text-[var(--muted)] ml-auto flex items-center gap-1">
-          <Clock className="w-3 h-3" />{hoursAgo}h ago
+          <Clock className="w-3 h-3" />
+          {hoursAgo}h ago
         </span>
       </div>
-      <h3 className="text-sm font-semibold text-[var(--text)] leading-snug mb-3 line-clamp-3">{post.title}</h3>
+      <h3 className="text-sm font-semibold text-[var(--text)] leading-snug mb-3 line-clamp-3">
+        {post.title}
+      </h3>
       <div className="flex items-center gap-4 text-xs text-[var(--muted)]">
         <span className="flex items-center gap-1 font-bold text-[var(--accent)]">
-          <ArrowBigUp className="w-4 h-4" />{formatScore(post.score)}
+          <ArrowBigUp className="w-4 h-4" />
+          {formatScore(post.score)}
         </span>
         <span className="flex items-center gap-1">💬 {post.num_comments}</span>
-        <span className="ml-auto truncate max-w-[100px] text-[var(--muted)]">u/{post.author}</span>
+        <span className="ml-auto truncate max-w-[100px] text-[var(--muted)]">
+          u/{post.author}
+        </span>
       </div>
     </a>
   );
@@ -137,12 +210,18 @@ export default function CommunityPage() {
     fetchPosts();
   }, []);
 
-  const filtered = posts.filter(p => activeSub === 'All' || p.subreddit.toLowerCase() === activeSub.toLowerCase());
-  const topics = useMemo(() => extractTopics(posts, team?.name), [posts, team?.name]);
+  const filtered = posts.filter(
+    (p) =>
+      activeSub === 'All' ||
+      p.subreddit.toLowerCase() === activeSub.toLowerCase()
+  );
+  const topics = useMemo(
+    () => extractTopics(posts, team?.name),
+    [posts, team?.name]
+  );
 
   return (
     <div className="w-full max-w-[800px] mx-auto px-4 py-8 pb-24">
-
       {/* ── HEADER ── */}
       <div className="mb-8">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-3)]/10 border border-[var(--accent-3)]/20 text-[10px] font-bold text-[var(--accent-3)] uppercase tracking-widest mb-4">
@@ -160,7 +239,9 @@ export default function CommunityPage() {
       {/* ── TRENDING TOPICS ── */}
       {topics.length > 0 && (
         <section className="mb-6">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--muted)] mb-2">🔥 Trending now</p>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--muted)] mb-2">
+            🔥 Trending now
+          </p>
           <div className="flex flex-wrap gap-2">
             {topics.map((topic, i) => (
               <span
@@ -176,13 +257,19 @@ export default function CommunityPage() {
 
       {/* ── SENTIMENT LEGEND ── */}
       <div className="flex items-center gap-3 mb-5 p-3 rounded-xl bg-[var(--card)] border border-[var(--border)]">
-        <span className="text-[10px] text-[var(--muted)] font-bold uppercase tracking-wider">Sentiment:</span>
+        <span className="text-[10px] text-[var(--muted)] font-bold uppercase tracking-wider">
+          Sentiment:
+        </span>
         {[
           { emoji: '🟢', label: 'Hype', color: '#00e5a0' },
           { emoji: '🟡', label: 'Debate', color: '#ffd700' },
           { emoji: '🔴', label: 'Drama', color: '#ff4d6d' },
-        ].map(s => (
-          <span key={s.label} className="flex items-center gap-1 text-[10px] font-semibold" style={{ color: s.color }}>
+        ].map((s) => (
+          <span
+            key={s.label}
+            className="flex items-center gap-1 text-[10px] font-semibold"
+            style={{ color: s.color }}
+          >
             {s.emoji} {s.label}
           </span>
         ))}
@@ -190,7 +277,7 @@ export default function CommunityPage() {
 
       {/* ── SUBREDDIT FILTERS ── */}
       <div className="flex gap-2 overflow-x-auto pb-2 mb-6 no-scrollbar">
-        {SUBREDDITS.map(sub => {
+        {SUBREDDITS.map((sub) => {
           const col = SUB_COLORS[sub] ?? 'var(--text)';
           const isActive = activeSub === sub;
           return (
@@ -198,9 +285,14 @@ export default function CommunityPage() {
               key={sub}
               onClick={() => setActiveSub(sub)}
               className="px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all touch-manipulation active:scale-95 border"
-              style={isActive
-                ? { color: '#fff', background: col, borderColor: col }
-                : { color: 'var(--muted)', background: 'var(--card)', borderColor: 'var(--border)' }
+              style={
+                isActive
+                  ? { color: '#fff', background: col, borderColor: col }
+                  : {
+                      color: 'var(--muted)',
+                      background: 'var(--card)',
+                      borderColor: 'var(--border)',
+                    }
               }
             >
               {sub}
@@ -217,7 +309,7 @@ export default function CommunityPage() {
             <p className="text-sm">Fetching latest buzz…</p>
           </div>
         ) : filtered.length > 0 ? (
-          filtered.map(post => <PostCard key={post.id} post={post} />)
+          filtered.map((post) => <PostCard key={post.id} post={post} />)
         ) : (
           <div className="text-center py-12 text-[var(--muted)] bg-[var(--card)] rounded-xl border border-[var(--border)]">
             <p className="text-sm">No recent posts for {activeSub}.</p>

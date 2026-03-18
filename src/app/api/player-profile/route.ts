@@ -7,9 +7,7 @@ const isPlaceholderKey =
 
 export const dynamic = 'force-dynamic';
 
-const groq = !isPlaceholderKey
-  ? new Groq({ apiKey })
-  : null;
+const groq = !isPlaceholderKey ? new Groq({ apiKey }) : null;
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -56,15 +54,19 @@ Respond ONLY with a valid JSON object matching the following structure exactly. 
 
     const chatCompletion = await groq.chat.completions.create({
       messages: [
-        { role: 'system', content: 'You are a professional football scout. Respond ONLY with raw JSON.' },
-        { role: 'user', content: prompt }
+        {
+          role: 'system',
+          content:
+            'You are a professional football scout. Respond ONLY with raw JSON.',
+        },
+        { role: 'user', content: prompt },
       ],
       model: 'llama-3.3-70b-versatile',
       temperature: 0.1, // Lower temperature for consistent JSON
-      response_format: { type: 'json_object' }
+      response_format: { type: 'json_object' },
     });
 
-    const text = chatCompletion.choices[0]?.message?.content || "{}";
+    const text = chatCompletion.choices[0]?.message?.content || '{}';
     const parsedData = JSON.parse(text);
     return NextResponse.json(parsedData);
   } catch (error) {

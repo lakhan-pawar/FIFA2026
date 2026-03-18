@@ -64,7 +64,7 @@ const DEFAULT_PROMPTS = [
   'Tell me about WC2026',
   'Who are the favourites?',
   'Surprise me with a football fact',
-  "What should I watch for?",
+  'What should I watch for?',
 ];
 
 // Typing bubble dots
@@ -107,23 +107,27 @@ function ChatMessage({
           {agentAvatar}
         </div>
       )}
-      <div className={`flex flex-col ${isUser ? 'items-end' : 'items-start'} max-w-[85%] md:max-w-[70%]`}>
+      <div
+        className={`flex flex-col ${isUser ? 'items-end' : 'items-start'} max-w-[85%] md:max-w-[70%]`}
+      >
         {!isUser && (
           <span className="text-[10px] font-black text-[var(--muted)] uppercase tracking-[0.2em] mb-1.5 ml-1 opacity-60">
             {agentName}
           </span>
         )}
-        <div 
+        <div
           className={`relative px-5 py-3.5 rounded-[2rem] text-sm leading-relaxed shadow-xl backdrop-blur-xl border transition-all duration-300 ${
-            isUser 
-              ? 'bg-[var(--accent)] text-black border-[var(--accent)]/20 rounded-tr-md font-semibold' 
+            isUser
+              ? 'bg-[var(--accent)] text-black border-[var(--accent)]/20 rounded-tr-md font-semibold'
               : 'bg-[var(--card)]/40 text-[var(--text)] border-[var(--border)] rounded-tl-md'
           }`}
         >
           {isLoading ? (
             <TypingIndicator />
           ) : (
-            <div className={`prose prose-sm dark:prose-invert max-w-none ${isUser ? 'text-black' : ''} prose-p:my-0 prose-p:mb-2 last:prose-p:mb-0`}>
+            <div
+              className={`prose prose-sm dark:prose-invert max-w-none ${isUser ? 'text-black' : ''} prose-p:my-0 prose-p:mb-2 last:prose-p:mb-0`}
+            >
               <ReactMarkdown>{msg.content}</ReactMarkdown>
             </div>
           )}
@@ -170,8 +174,12 @@ export default function AgentChatPage({
     const trimmed = text.trim();
     if (!trimmed || isLoading) return;
 
-    const userMsg: Message = { id: Date.now().toString(), role: 'user', content: trimmed };
-    setMessages(prev => [...prev, userMsg]);
+    const userMsg: Message = {
+      id: Date.now().toString(),
+      role: 'user',
+      content: trimmed,
+    };
+    setMessages((prev) => [...prev, userMsg]);
     setInput('');
     setIsLoading(true);
 
@@ -179,16 +187,30 @@ export default function AgentChatPage({
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          agentId: agent.id, 
+        body: JSON.stringify({
+          agentId: agent.id,
           messages: [...messages, userMsg],
         }),
       });
       if (!res.ok) throw new Error();
       const data = await res.json();
-      setMessages(prev => [...prev, { id: (Date.now() + 1).toString(), role: 'assistant', content: data.reply }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: (Date.now() + 1).toString(),
+          role: 'assistant',
+          content: data.reply,
+        },
+      ]);
     } catch {
-      setMessages(prev => [...prev, { id: (Date.now() + 1).toString(), role: 'assistant', content: "Neural handshake failed. Please re-engage." }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: (Date.now() + 1).toString(),
+          role: 'assistant',
+          content: 'Neural handshake failed. Please re-engage.',
+        },
+      ]);
     } finally {
       setIsLoading(false);
     }
@@ -208,14 +230,13 @@ export default function AgentChatPage({
 
   return (
     <div className="fixed inset-0 flex flex-col bg-[var(--bg)] text-[var(--text)] z-[100] isolate overflow-hidden">
-      
       {/* ── IMMERSIVE ENVIRONMENT ── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div 
+        <div
           className="absolute inset-0 opacity-40 transition-colors duration-1000"
-          style={{ 
-            background: `radial-gradient(circle at 50% -20%, color-mix(in srgb, var(--accent) 15%, transparent), transparent 70%)` 
-          }} 
+          style={{
+            background: `radial-gradient(circle at 50% -20%, color-mix(in srgb, var(--accent) 15%, transparent), transparent 70%)`,
+          }}
         />
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay" />
         <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-[var(--bg)] to-transparent z-10" />
@@ -231,18 +252,24 @@ export default function AgentChatPage({
         </button>
 
         <div className="flex items-center gap-4 flex-1 min-w-0">
-          <div 
+          <div
             className="w-12 h-12 rounded-2xl flex items-center justify-center text-3xl shadow-2xl border border-[var(--border)] relative overflow-hidden"
-            style={{ backgroundColor: `color-mix(in srgb, var(--accent) 10%, var(--card))` }}
+            style={{
+              backgroundColor: `color-mix(in srgb, var(--accent) 10%, var(--card))`,
+            }}
           >
             <div className="absolute inset-0 bg-gradient-to-tr from-[var(--accent)]/10 to-transparent opacity-50" />
             <span className="relative z-10">{agent.avatar}</span>
           </div>
           <div className="flex flex-col min-w-0">
-            <h1 className="font-display text-lg leading-none tracking-tight truncate">{agent.name}</h1>
+            <h1 className="font-display text-lg leading-none tracking-tight truncate">
+              {agent.name}
+            </h1>
             <div className="flex items-center gap-2 mt-1">
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--accent)] opacity-80 truncate">{agent.role}</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--accent)] opacity-80 truncate">
+                {agent.role}
+              </span>
             </div>
           </div>
         </div>
@@ -250,7 +277,9 @@ export default function AgentChatPage({
         <div className="flex items-center gap-2">
           {hasMessages && (
             <button
-              onClick={() => { if (confirm('Purge neural data?')) setMessages([]); }}
+              onClick={() => {
+                if (confirm('Purge neural data?')) setMessages([]);
+              }}
               className="w-10 h-10 flex items-center justify-center rounded-2xl bg-[var(--card)]/40 border border-[var(--border)] hover:bg-[var(--card)]/60 text-[var(--muted)] hover:text-[var(--text)] transition-all active:scale-90"
             >
               <RotateCcw className="w-4 h-4" />
@@ -291,9 +320,12 @@ export default function AgentChatPage({
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
               >
-                <h2 className="font-display text-4xl mb-3 tracking-tighter">Initialize Link with {agent.name}</h2>
+                <h2 className="font-display text-4xl mb-3 tracking-tighter">
+                  Initialize Link with {agent.name}
+                </h2>
                 <p className="text-[var(--text-2)] text-lg mb-10 leading-relaxed balance opacity-80 font-medium">
-                  {agent.description} I am ready to provide deep insights tailored to your requirements.
+                  {agent.description} I am ready to provide deep insights
+                  tailored to your requirements.
                 </p>
 
                 <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3 pb-24">
@@ -309,21 +341,25 @@ export default function AgentChatPage({
                       <div className="absolute top-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity">
                         <Send className="w-3 h-3 text-[var(--accent)]" />
                       </div>
-                      <span className="text-[8px] font-black uppercase tracking-[0.2em] text-[var(--muted)] mb-2 group-hover:text-[var(--accent)] transition-colors">Suggested Query</span>
-                      <span className="text-sm text-[var(--text)] font-semibold leading-tight line-clamp-2">{p}</span>
+                      <span className="text-[8px] font-black uppercase tracking-[0.2em] text-[var(--muted)] mb-2 group-hover:text-[var(--accent)] transition-colors">
+                        Suggested Query
+                      </span>
+                      <span className="text-sm text-[var(--text)] font-semibold leading-tight line-clamp-2">
+                        {p}
+                      </span>
                     </motion.button>
                   ))}
                 </div>
               </motion.div>
             </motion.div>
           ) : (
-            <motion.div 
+            <motion.div
               key="chat-history"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="flex flex-col gap-2 pb-48 max-w-4xl mx-auto w-full"
             >
-              {messages.map(msg => (
+              {messages.map((msg) => (
                 <ChatMessage
                   key={msg.id}
                   msg={msg}
@@ -354,7 +390,7 @@ export default function AgentChatPage({
             <textarea
               ref={textareaRef}
               value={input}
-              onChange={e => setInput(e.target.value)}
+              onChange={(e) => setInput(e.target.value)}
               onKeyDown={onKeyDown}
               placeholder={`Communicate with ${agent.name}...`}
               rows={1}
@@ -370,16 +406,20 @@ export default function AgentChatPage({
                   : 'bg-[var(--card)]/20 text-[var(--text)]/20 scale-90 rotate-12'
               }`}
             >
-              {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
+              {isLoading ? (
+                <Loader2 className="w-5 h-5 animate-spin" />
+              ) : (
+                <Send className="w-5 h-5" />
+              )}
             </button>
           </form>
           <div className="flex items-center justify-between px-6 mt-3">
-             <div className="text-[8px] font-black uppercase tracking-[0.2em] text-[var(--muted)] animate-pulse">
-                System Online • Encrypted Channel
-             </div>
-             <p className="text-[8px] font-black uppercase tracking-[0.2em] text-[var(--muted)]/40">
-                Neural content may vary
-             </p>
+            <div className="text-[8px] font-black uppercase tracking-[0.2em] text-[var(--muted)] animate-pulse">
+              System Online • Encrypted Channel
+            </div>
+            <p className="text-[8px] font-black uppercase tracking-[0.2em] text-[var(--muted)]/40">
+              Neural content may vary
+            </p>
           </div>
         </div>
       </footer>

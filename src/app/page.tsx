@@ -32,41 +32,62 @@ function useCountdown(target: Date) {
 
 const WC_KICKOFF = new Date('2026-06-11T18:00:00Z');
 
-const FEATURED_IDS = ['tactician', 'data-scientist', 'commentator', 'historian'];
+const FEATURED_IDS = [
+  'tactician',
+  'data-scientist',
+  'commentator',
+  'historian',
+];
 
 export default function Home() {
   const { team } = useFavoriteTeam();
   const t = useCountdown(WC_KICKOFF);
-  
+
   const pulseStats = [
     { label: 'Teams', value: '48', icon: '🌍', color: 'var(--accent)' },
     { label: 'Groups', value: '12', icon: '🔢', color: 'var(--accent-2)' },
     { label: 'Matches', value: '104', icon: '⚽', color: 'var(--accent-3)' },
     { label: 'Host Cities', value: '16', icon: '🏙️', color: 'var(--gold)' },
-    { label: team ? 'Rank' : 'AI Agents', value: team ? '#1' : '8', icon: team ? '🏆' : '🤖', color: 'var(--accent)' },
-    { label: team ? 'Status' : 'Toronto Venues', value: team ? 'Qualified' : '10+', icon: team ? '✅' : '🍁', color: 'var(--accent-2)' },
+    {
+      label: team ? 'Rank' : 'AI Agents',
+      value: team ? '#1' : '8',
+      icon: team ? '🏆' : '🤖',
+      color: 'var(--accent)',
+    },
+    {
+      label: team ? 'Status' : 'Toronto Venues',
+      value: team ? 'Qualified' : '10+',
+      icon: team ? '✅' : '🍁',
+      color: 'var(--accent-2)',
+    },
   ];
-  
+
   const [featuredIdx, setFeaturedIdx] = useState(0);
   const [mounted, setMounted] = useState(false);
   const [pageLoaded, setPageLoaded] = useState(false);
   const [goalActive, setGoalActive] = useState(false);
   const [goalData, setGoalData] = useState({
-    homeTeam: '', awayTeam: '',
-    homeScore: 0, awayScore: 0, scorer: '',
+    homeTeam: '',
+    awayTeam: '',
+    homeScore: 0,
+    awayScore: 0,
+    scorer: '',
   });
   const [contentLoading, setContentLoading] = useState(true);
 
   useEffect(() => {
     setMounted(true);
     setPageLoaded(true);
-    
+
     // Simulate initial content load
     const timer = setTimeout(() => {
       setContentLoading(false);
     }, 1800);
 
-    const id = setInterval(() => setFeaturedIdx((i: number) => (i + 1) % FEATURED_IDS.length), 8000);
+    const id = setInterval(
+      () => setFeaturedIdx((i: number) => (i + 1) % FEATURED_IDS.length),
+      8000
+    );
     return () => {
       clearInterval(id);
       clearTimeout(timer);
@@ -84,7 +105,7 @@ export default function Home() {
     setGoalActive(true);
   };
 
-  const featuredAgent = AGENTS.find(a => a.id === FEATURED_IDS[featuredIdx]);
+  const featuredAgent = AGENTS.find((a) => a.id === FEATURED_IDS[featuredIdx]);
 
   return (
     <div className="w-full overflow-x-hidden">
@@ -116,7 +137,11 @@ export default function Home() {
           <LivePulseRing
             color="var(--accent)"
             size={7}
-            label={team ? `${team.name} · ROAD TO 2026` : 'FIFA World Cup 2026 · North America'}
+            label={
+              team
+                ? `${team.name} · ROAD TO 2026`
+                : 'FIFA World Cup 2026 · North America'
+            }
             showLabel={true}
           />
         </div>
@@ -135,10 +160,9 @@ export default function Home() {
         </h1>
 
         <p className="relative z-10 text-[var(--muted)] text-sm sm:text-lg max-w-[280px] sm:max-w-md mt-2 mb-8 sm:mb-12 leading-relaxed">
-          {team 
-            ? `Track ${team.name}'s journey to the finals with AI-powered tactical depth.` 
-            : 'AI-powered football intelligence for WC 2026. Zero sign-ups. Pure data, pure passion.'
-          }
+          {team
+            ? `Track ${team.name}'s journey to the finals with AI-powered tactical depth.`
+            : 'AI-powered football intelligence for WC 2026. Zero sign-ups. Pure data, pure passion.'}
         </p>
 
         {/* Countdown */}
@@ -146,15 +170,22 @@ export default function Home() {
           <div className="relative z-10 grid grid-cols-4 gap-2 sm:gap-3 mb-10 w-full max-w-[260px] sm:max-w-sm">
             {[
               { v: t.days, l: 'Days' },
-              { v: String(t.hours).padStart(2,'0'), l: 'Hrs' },
-              { v: String(t.minutes).padStart(2,'0'), l: 'Min' },
-              { v: String(t.seconds).padStart(2,'0'), l: 'Sec' },
+              { v: String(t.hours).padStart(2, '0'), l: 'Hrs' },
+              { v: String(t.minutes).padStart(2, '0'), l: 'Min' },
+              { v: String(t.seconds).padStart(2, '0'), l: 'Sec' },
             ].map((seg, i) => (
-              <div key={i} className="flex flex-col items-center justify-center bg-[var(--card)] border border-[var(--border)] rounded-xl sm:rounded-2xl py-3 sm:py-4 px-1 backdrop-blur-sm shadow-sm">
-                <span className={`font-display text-2xl sm:text-4xl font-bold tabular-nums leading-none ${i === 3 ? 'text-[var(--accent)]' : 'text-[var(--text)]'}`}>
+              <div
+                key={i}
+                className="flex flex-col items-center justify-center bg-[var(--card)] border border-[var(--border)] rounded-xl sm:rounded-2xl py-3 sm:py-4 px-1 backdrop-blur-sm shadow-sm"
+              >
+                <span
+                  className={`font-display text-2xl sm:text-4xl font-bold tabular-nums leading-none ${i === 3 ? 'text-[var(--accent)]' : 'text-[var(--text)]'}`}
+                >
                   {seg.v}
                 </span>
-                <span className="text-[9px] sm:text-[10px] text-[var(--muted)] uppercase tracking-widest mt-1">{seg.l}</span>
+                <span className="text-[9px] sm:text-[10px] text-[var(--muted)] uppercase tracking-widest mt-1">
+                  {seg.l}
+                </span>
               </div>
             ))}
             <div className="col-span-4 text-center text-[9px] text-[var(--muted)] uppercase tracking-[0.2em] mt-1 opacity-60">
@@ -177,7 +208,7 @@ export default function Home() {
           >
             🤖 Chat with AI
           </Link>
-          
+
           {/* Goal Demo Trigger */}
           <button
             onClick={triggerGoalDemo}
@@ -203,8 +234,15 @@ export default function Home() {
                 className="shrink-0 flex flex-col items-center justify-center bg-[var(--card)] border border-[var(--border)] rounded-2xl px-5 py-3.5 min-w-[110px] sm:min-w-[120px] hover:border-[var(--border-hover)] transition-all cursor-default shadow-sm"
               >
                 <span className="text-xl sm:text-2xl mb-1">{s.icon}</span>
-                <span className="font-display text-2xl sm:text-3xl font-bold" style={{ color: s.color }}>{s.value}</span>
-                <span className="text-[9px] sm:text-[10px] text-[var(--muted)] uppercase tracking-widest mt-0.5">{s.label}</span>
+                <span
+                  className="font-display text-2xl sm:text-3xl font-bold"
+                  style={{ color: s.color }}
+                >
+                  {s.value}
+                </span>
+                <span className="text-[9px] sm:text-[10px] text-[var(--muted)] uppercase tracking-widest mt-0.5">
+                  {s.label}
+                </span>
               </div>
             ))}
             <div className="shrink-0 w-3" />
@@ -219,10 +257,18 @@ export default function Home() {
             Agent <span className="text-[var(--accent)]">Spotlight</span>
           </h2>
           <div className="flex items-center gap-4">
-             <LivePulseRing color="#22c55e" size={6} label="Online" showLabel={true} />
-             <Link href="/agents" className="text-[10px] font-bold uppercase tracking-widest text-[var(--muted)] hover:text-[var(--text)] transition-colors">
-               All 8 agents →
-             </Link>
+            <LivePulseRing
+              color="#22c55e"
+              size={6}
+              label="Online"
+              showLabel={true}
+            />
+            <Link
+              href="/agents"
+              className="text-[10px] font-bold uppercase tracking-widest text-[var(--muted)] hover:text-[var(--text)] transition-colors"
+            >
+              All 8 agents →
+            </Link>
           </div>
         </div>
 
@@ -239,7 +285,7 @@ export default function Home() {
             >
               {/* glow */}
               <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/5 to-[var(--accent-2)]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-              
+
               <div className="shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent-2)]/20 border border-[var(--border)] flex items-center justify-center text-5xl shadow-lg relative z-10 transition-transform group-hover:scale-110">
                 {featuredAgent.avatar}
               </div>
@@ -250,10 +296,14 @@ export default function Home() {
                     Featured Agent
                   </span>
                   <span className="hidden sm:inline w-1 h-1 rounded-full bg-[var(--border)]" />
-                  <span className="text-[11px] text-[var(--accent-2)] font-bold uppercase tracking-widest">{featuredAgent.role}</span>
+                  <span className="text-[11px] text-[var(--accent-2)] font-bold uppercase tracking-widest">
+                    {featuredAgent.role}
+                  </span>
                 </div>
-                
-                <h3 className="font-display text-2xl text-[var(--text)] mb-2">{featuredAgent.name}</h3>
+
+                <h3 className="font-display text-2xl text-[var(--text)] mb-2">
+                  {featuredAgent.name}
+                </h3>
                 <p className="text-sm text-[var(--text-2)] leading-relaxed max-w-md mx-auto sm:mx-0">
                   {featuredAgent.description}
                 </p>
@@ -285,12 +335,48 @@ export default function Home() {
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
           {[
-            { href: '/countdown', emoji: '📅', label: 'Schedule', sub: 'WC2026 timeline', color: 'var(--accent)' },
-            { href: '/groups', emoji: '🗂️', label: 'The 48 Groups', sub: 'All 12 groups', color: 'var(--accent-2)' },
-            { href: '/watch-parties', emoji: '🍁', label: 'Watch Parties', sub: 'Toronto venues', color: '#ff4d6d' },
-            { href: '/fan-pulse', emoji: '🔥', label: 'Fan Pulse', sub: 'Reddit buzz', color: 'var(--accent-3)' },
-            { href: '/stats', emoji: '📊', label: 'Stats', sub: 'xG & advanced', color: 'var(--accent)' },
-            { href: '/teams', emoji: '🌍', label: 'Nations', sub: 'All 48 teams', color: 'var(--gold)' },
+            {
+              href: '/countdown',
+              emoji: '📅',
+              label: 'Schedule',
+              sub: 'WC2026 timeline',
+              color: 'var(--accent)',
+            },
+            {
+              href: '/groups',
+              emoji: '🗂️',
+              label: 'The 48 Groups',
+              sub: 'All 12 groups',
+              color: 'var(--accent-2)',
+            },
+            {
+              href: '/watch-parties',
+              emoji: '🍁',
+              label: 'Watch Parties',
+              sub: 'Toronto venues',
+              color: '#ff4d6d',
+            },
+            {
+              href: '/fan-pulse',
+              emoji: '🔥',
+              label: 'Fan Pulse',
+              sub: 'Reddit buzz',
+              color: 'var(--accent-3)',
+            },
+            {
+              href: '/stats',
+              emoji: '📊',
+              label: 'Stats',
+              sub: 'xG & advanced',
+              color: 'var(--accent)',
+            },
+            {
+              href: '/teams',
+              emoji: '🌍',
+              label: 'Nations',
+              sub: 'All 48 teams',
+              color: 'var(--gold)',
+            },
           ].map((item) => (
             <Link
               key={item.href}
@@ -298,11 +384,19 @@ export default function Home() {
               className="group p-4 sm:p-5 rounded-[22px] bg-[var(--card)] border border-[var(--border)] hover:border-[var(--accent)]/30 hover:bg-[var(--card-hover)] transition-all touch-manipulation active:scale-[0.97] shadow-sm"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="text-3xl filter drop-shadow-sm">{item.emoji}</span>
-                <div className="hidden sm:block opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all text-[var(--accent)] text-xs">→</div>
+                <span className="text-3xl filter drop-shadow-sm">
+                  {item.emoji}
+                </span>
+                <div className="hidden sm:block opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all text-[var(--accent)] text-xs">
+                  →
+                </div>
               </div>
-              <span className="block font-display text-sm sm:text-base text-[var(--text)] group-hover:text-[var(--accent)] transition-colors leading-tight">{item.label}</span>
-              <span className="block text-[10px] text-[var(--muted)] mt-1 tracking-wide">{item.sub}</span>
+              <span className="block font-display text-sm sm:text-base text-[var(--text)] group-hover:text-[var(--accent)] transition-colors leading-tight">
+                {item.label}
+              </span>
+              <span className="block text-[10px] text-[var(--muted)] mt-1 tracking-wide">
+                {item.sub}
+              </span>
             </Link>
           ))}
         </div>

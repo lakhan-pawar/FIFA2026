@@ -109,35 +109,162 @@ export default function StandingsPage() {
 
   const getTeamRecords = (name: string) => {
     const n = name.toLowerCase();
-    
+
     // Core stats for each supported team (Updated to Official FIFA rankings Jan 2026)
-    const data: Record<string, { rank: string; finish: string; extra: { label: string; value: string; icon: any } }> = {
-      'argentina': { rank: '#2', finish: 'Champions (2022)', extra: { label: 'Titles', value: '3', icon: <Trophy className="w-4 h-4" /> } },
-      'france': { rank: '#3', finish: 'Champions (2018)', extra: { label: 'Titles', value: '2', icon: <Trophy className="w-4 h-4" /> } },
-      'brazil': { rank: '#5', finish: 'Champions (2002)', extra: { label: 'Titles', value: '5', icon: <Trophy className="w-4 h-4" /> } },
-      'england': { rank: '#4', finish: 'Champions (1966)', extra: { label: 'Titles', value: '1', icon: <Trophy className="w-4 h-4" /> } },
-      'germany': { rank: '#10', finish: 'Champions (2014)', extra: { label: 'Titles', value: '4', icon: <Trophy className="w-4 h-4" /> } },
-      'spain': { rank: '#1', finish: 'Champions (2010)', extra: { label: 'Titles', value: '1', icon: <Trophy className="w-4 h-4" /> } },
-      'portugal': { rank: '#6', finish: '3rd Place (1966)', extra: { label: 'Best Scorer', value: 'Eusébio (9)', icon: <Goal className="w-4 h-4" /> } },
-      'italy': { rank: '#13', finish: 'Champions (2006)', extra: { label: 'Titles', value: '4', icon: <Trophy className="w-4 h-4" /> } },
-      'mexico': { rank: '#16', finish: 'Quarter-Finals', extra: { label: 'Appearances', value: '17', icon: <BarChart className="w-4 h-4" /> } },
-      'usa': { rank: '#15', finish: '3rd Place (1930)', extra: { label: 'Appearances', value: '11', icon: <BarChart className="w-4 h-4" /> } },
-      'canada': { rank: '#29', finish: 'Group Stage', extra: { label: 'Appearances', value: '2', icon: <BarChart className="w-4 h-4" /> } },
-      'japan': { rank: '#19', finish: 'Round of 16', extra: { label: 'Best Scorer', value: 'Honda (4)', icon: <Goal className="w-4 h-4" /> } },
-      'morocco': { rank: '#8', finish: '4th Place (2022)', extra: { label: 'Appearances', value: '6', icon: <BarChart className="w-4 h-4" /> } },
+    const data: Record<
+      string,
+      {
+        rank: string;
+        finish: string;
+        extra: { label: string; value: string; icon: any };
+      }
+    > = {
+      argentina: {
+        rank: '#2',
+        finish: 'Champions (2022)',
+        extra: {
+          label: 'Titles',
+          value: '3',
+          icon: <Trophy className="w-4 h-4" />,
+        },
+      },
+      france: {
+        rank: '#3',
+        finish: 'Champions (2018)',
+        extra: {
+          label: 'Titles',
+          value: '2',
+          icon: <Trophy className="w-4 h-4" />,
+        },
+      },
+      brazil: {
+        rank: '#5',
+        finish: 'Champions (2002)',
+        extra: {
+          label: 'Titles',
+          value: '5',
+          icon: <Trophy className="w-4 h-4" />,
+        },
+      },
+      england: {
+        rank: '#4',
+        finish: 'Champions (1966)',
+        extra: {
+          label: 'Titles',
+          value: '1',
+          icon: <Trophy className="w-4 h-4" />,
+        },
+      },
+      germany: {
+        rank: '#10',
+        finish: 'Champions (2014)',
+        extra: {
+          label: 'Titles',
+          value: '4',
+          icon: <Trophy className="w-4 h-4" />,
+        },
+      },
+      spain: {
+        rank: '#1',
+        finish: 'Champions (2010)',
+        extra: {
+          label: 'Titles',
+          value: '1',
+          icon: <Trophy className="w-4 h-4" />,
+        },
+      },
+      portugal: {
+        rank: '#6',
+        finish: '3rd Place (1966)',
+        extra: {
+          label: 'Best Scorer',
+          value: 'Eusébio (9)',
+          icon: <Goal className="w-4 h-4" />,
+        },
+      },
+      italy: {
+        rank: '#13',
+        finish: 'Champions (2006)',
+        extra: {
+          label: 'Titles',
+          value: '4',
+          icon: <Trophy className="w-4 h-4" />,
+        },
+      },
+      mexico: {
+        rank: '#16',
+        finish: 'Quarter-Finals',
+        extra: {
+          label: 'Appearances',
+          value: '17',
+          icon: <BarChart className="w-4 h-4" />,
+        },
+      },
+      usa: {
+        rank: '#15',
+        finish: '3rd Place (1930)',
+        extra: {
+          label: 'Appearances',
+          value: '11',
+          icon: <BarChart className="w-4 h-4" />,
+        },
+      },
+      canada: {
+        rank: '#29',
+        finish: 'Group Stage',
+        extra: {
+          label: 'Appearances',
+          value: '2',
+          icon: <BarChart className="w-4 h-4" />,
+        },
+      },
+      japan: {
+        rank: '#19',
+        finish: 'Round of 16',
+        extra: {
+          label: 'Best Scorer',
+          value: 'Honda (4)',
+          icon: <Goal className="w-4 h-4" />,
+        },
+      },
+      morocco: {
+        rank: '#8',
+        finish: '4th Place (2022)',
+        extra: {
+          label: 'Appearances',
+          value: '6',
+          icon: <BarChart className="w-4 h-4" />,
+        },
+      },
     };
 
-    const teamData = data[n] || { 
-      rank: '#TBD', 
-      finish: 'Qualified', 
-      extra: { label: 'Status', value: 'Ready', icon: <Star className="w-4 h-4" /> } 
+    const teamData = data[n] || {
+      rank: '#TBD',
+      finish: 'Qualified',
+      extra: {
+        label: 'Status',
+        value: 'Ready',
+        icon: <Star className="w-4 h-4" />,
+      },
     };
 
     return [
-      { label: 'WC Rank', value: teamData.rank, icon: <Star className="w-4 h-4" /> },
-      { label: 'Best Finish', value: teamData.finish, icon: <Trophy className="w-4 h-4" /> },
+      {
+        label: 'WC Rank',
+        value: teamData.rank,
+        icon: <Star className="w-4 h-4" />,
+      },
+      {
+        label: 'Best Finish',
+        value: teamData.finish,
+        icon: <Trophy className="w-4 h-4" />,
+      },
       teamData.extra,
-      { label: 'Status', value: 'Qualified', icon: <Award className="w-4 h-4" /> },
+      {
+        label: 'Status',
+        value: 'Qualified',
+        icon: <Award className="w-4 h-4" />,
+      },
     ];
   };
 
@@ -165,14 +292,15 @@ export default function StandingsPage() {
               <Star className="w-4 h-4 fill-[var(--accent)]" />
             </div>
             <h2 className="font-display text-xl text-[var(--text)]">
-              National Records: <span className="text-[var(--accent)]">{team.name}</span>
+              National Records:{' '}
+              <span className="text-[var(--accent)]">{team.name}</span>
             </h2>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {teamRecords.map((rec, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className="p-4 rounded-2xl bg-gradient-to-br from-[var(--accent)]/5 to-transparent border border-[var(--accent)]/20 flex flex-col items-center text-center group hover:bg-[var(--accent)]/10 transition-colors"
               >
                 <div className="p-2 rounded-lg bg-[var(--accent)]/10 text-[var(--accent)] mb-3 group-hover:scale-110 transition-transform">

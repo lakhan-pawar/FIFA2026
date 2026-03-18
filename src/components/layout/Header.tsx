@@ -122,7 +122,7 @@ export function Header() {
             ) : (
               <Zap className="w-5 h-5 text-[var(--muted)] group-hover:text-[var(--accent)] transition-colors" />
             )}
-            
+
             {/* Pulsing indicator if no team selected */}
             {!team && (
               <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[var(--accent)] animate-ping" />
@@ -135,12 +135,12 @@ export function Header() {
           >
             <Search className="w-5 h-5" />
           </button>
-          
+
           <ThemeToggle />
 
-          <TeamPicker 
-            isOpen={isTeamPickerOpen} 
-            onClose={() => setIsTeamPickerOpen(false)} 
+          <TeamPicker
+            isOpen={isTeamPickerOpen}
+            onClose={() => setIsTeamPickerOpen(false)}
           />
         </div>
       </div>

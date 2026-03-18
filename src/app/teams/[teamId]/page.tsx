@@ -219,7 +219,9 @@ export default function TeamProfilePage({
                       </span>
                     </div>
                     <h3 className="text-xl font-display">
-                      {team.name} <span className="text-[var(--muted)] mx-2">vs</span> {match.opponent}
+                      {team.name}{' '}
+                      <span className="text-[var(--muted)] mx-2">vs</span>{' '}
+                      {match.opponent}
                     </h3>
                   </div>
 
@@ -229,7 +231,10 @@ export default function TeamProfilePage({
                       {match.venue}
                     </div>
                     <div className="text-xs text-[var(--muted)] sm:text-right">
-                      {match.city}, {team.region === 'CONCACAF' ? 'North America' : team.region}
+                      {match.city},{' '}
+                      {team.region === 'CONCACAF'
+                        ? 'North America'
+                        : team.region}
                     </div>
                   </div>
                 </div>
@@ -242,11 +247,14 @@ export default function TeamProfilePage({
               <Info className="w-5 h-5 text-[var(--accent)]" />
             </div>
             <div>
-              <h4 className="font-bold text-[var(--text)] text-sm mb-1">Schedule TBD</h4>
+              <h4 className="font-bold text-[var(--text)] text-sm mb-1">
+                Schedule TBD
+              </h4>
               <p className="text-xs text-[var(--muted)] leading-relaxed">
-                Specific match dates and opponents for {team.name} will be finalized during the 
-                <strong> Group Stage Draw in December 2025</strong>. 
-                Host nations and top-seeded teams are placed in groups A-L.
+                Specific match dates and opponents for {team.name} will be
+                finalized during the
+                <strong> Group Stage Draw in December 2025</strong>. Host
+                nations and top-seeded teams are placed in groups A-L.
               </p>
             </div>
           </div>

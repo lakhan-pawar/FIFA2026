@@ -3,11 +3,10 @@ import { getAgentById } from '@/lib/agents/agent-config';
 import Groq from 'groq-sdk';
 
 const apiKey = process.env.GROQ_API_KEY;
-const isPlaceholderKey = !apiKey || apiKey.includes('your_') || apiKey === 'fallback';
+const isPlaceholderKey =
+  !apiKey || apiKey.includes('your_') || apiKey === 'fallback';
 
-const groq = !isPlaceholderKey
-  ? new Groq({ apiKey })
-  : null;
+const groq = !isPlaceholderKey ? new Groq({ apiKey }) : null;
 
 export async function POST(request: Request) {
   try {
@@ -56,7 +55,7 @@ Your responses should be written exactly in your character's voice. Be concise, 
       max_tokens: 1024,
     });
 
-    const reply = chatCompletion.choices[0]?.message?.content || "";
+    const reply = chatCompletion.choices[0]?.message?.content || '';
 
     return NextResponse.json({ reply });
   } catch (error) {

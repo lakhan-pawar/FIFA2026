@@ -2,7 +2,11 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { TEAMS, useFavoriteTeam, TeamInfo } from '@/context/FavoriteTeamContext';
+import {
+  TEAMS,
+  useFavoriteTeam,
+  TeamInfo,
+} from '@/context/FavoriteTeamContext';
 import { X, Check, Search } from 'lucide-react';
 
 interface TeamPickerProps {
@@ -14,7 +18,7 @@ export function TeamPicker({ isOpen, onClose }: TeamPickerProps) {
   const { teamId, setTeamId } = useFavoriteTeam();
   const [search, setSearch] = useState('');
 
-  const filteredTeams = TEAMS.filter(t => 
+  const filteredTeams = TEAMS.filter((t) =>
     t.name.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -29,7 +33,7 @@ export function TeamPicker({ isOpen, onClose }: TeamPickerProps) {
             onClick={onClose}
             className="absolute inset-0 bg-black/80 backdrop-blur-md"
           />
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -39,10 +43,15 @@ export function TeamPicker({ isOpen, onClose }: TeamPickerProps) {
             {/* Header */}
             <div className="p-8 border-b border-[var(--border)] flex items-center justify-between shrink-0 bg-gradient-to-br from-[var(--card)] to-[var(--bg)]">
               <div>
-                <h2 className="font-display text-3xl text-[var(--text)] font-bold tracking-tight">Choose Your <span className="text-[var(--accent)] italic">Legacy</span></h2>
-                <p className="text-sm text-[var(--muted)] mt-1 font-medium">Elevate your WC2026 journey with a team-specific skin.</p>
+                <h2 className="font-display text-3xl text-[var(--text)] font-bold tracking-tight">
+                  Choose Your{' '}
+                  <span className="text-[var(--accent)] italic">Legacy</span>
+                </h2>
+                <p className="text-sm text-[var(--muted)] mt-1 font-medium">
+                  Elevate your WC2026 journey with a team-specific skin.
+                </p>
               </div>
-              <button 
+              <button
                 onClick={onClose}
                 className="w-12 h-12 flex items-center justify-center rounded-full hover:bg-[var(--bg-2)] transition-all active:scale-90 border border-[var(--border)]"
                 aria-label="Close"
@@ -55,7 +64,7 @@ export function TeamPicker({ isOpen, onClose }: TeamPickerProps) {
             <div className="p-6 bg-[var(--bg-2)]/30 backdrop-blur-md shrink-0">
               <div className="relative group">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--muted)] group-focus-within:text-[var(--accent)] transition-colors" />
-                <input 
+                <input
                   type="text"
                   placeholder="Search your nation..."
                   value={search}
@@ -76,8 +85,8 @@ export function TeamPicker({ isOpen, onClose }: TeamPickerProps) {
                       onClose();
                     }}
                     className={`flex items-center gap-4 p-4 rounded-[24px] border transition-all text-left group relative overflow-hidden ${
-                      teamId === team.id 
-                        ? 'bg-[var(--accent)]/10 border-[var(--accent)] ring-1 ring-[var(--accent)]/50' 
+                      teamId === team.id
+                        ? 'bg-[var(--accent)]/10 border-[var(--accent)] ring-1 ring-[var(--accent)]/50'
                         : 'bg-[var(--card)] border-[var(--border)] hover:border-[var(--accent)]/40 hover:translate-y-[-2px] hover:shadow-xl'
                     }`}
                   >
@@ -85,10 +94,18 @@ export function TeamPicker({ isOpen, onClose }: TeamPickerProps) {
                       {team.flag}
                     </div>
                     <div className="flex-1 min-w-0 relative z-10">
-                      <div className="font-bold text-base tracking-tight truncate">{team.name}</div>
+                      <div className="font-bold text-base tracking-tight truncate">
+                        {team.name}
+                      </div>
                       <div className="flex gap-1.5 mt-2">
-                        <div className="w-4 h-2 rounded-full shadow-inner" style={{ backgroundColor: team.colors.primary }} />
-                        <div className="w-4 h-2 rounded-full shadow-inner opacity-60" style={{ backgroundColor: team.colors.secondary }} />
+                        <div
+                          className="w-4 h-2 rounded-full shadow-inner"
+                          style={{ backgroundColor: team.colors.primary }}
+                        />
+                        <div
+                          className="w-4 h-2 rounded-full shadow-inner opacity-60"
+                          style={{ backgroundColor: team.colors.secondary }}
+                        />
                       </div>
                     </div>
                     {teamId === team.id && (
@@ -96,15 +113,17 @@ export function TeamPicker({ isOpen, onClose }: TeamPickerProps) {
                         <Check className="w-4 h-4 stroke-[3px]" />
                       </div>
                     )}
-                    
+
                     {/* Subtle team color glow on hover */}
-                    <div 
-                      className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity" 
-                      style={{ background: `linear-gradient(135deg, ${team.colors.primary}, transparent)` }}
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity"
+                      style={{
+                        background: `linear-gradient(135deg, ${team.colors.primary}, transparent)`,
+                      }}
                     />
                   </button>
                 ))}
-                
+
                 {teamId && (
                   <button
                     onClick={() => {
@@ -123,7 +142,10 @@ export function TeamPicker({ isOpen, onClose }: TeamPickerProps) {
             {/* Footer */}
             <div className="p-5 bg-[var(--bg)] border-t border-[var(--border)] text-center shrink-0">
               <p className="text-xs text-[var(--muted)] font-medium">
-                The experience will deeply adapt to your selection. <span className="text-[var(--accent)] ml-1">United by the Game.</span>
+                The experience will deeply adapt to your selection.{' '}
+                <span className="text-[var(--accent)] ml-1">
+                  United by the Game.
+                </span>
               </p>
             </div>
           </motion.div>
