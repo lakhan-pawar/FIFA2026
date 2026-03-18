@@ -1,0 +1,182 @@
+﻿
+> kickoff-ai@0.1.0 type-check
+> tsc --noEmit
+
+src/hooks/useEnhancedLiveMatches.ts(4,40): error TS2307: Cannot find module '@/lib/sports' or its corresponding type declarations.
+src/hooks/useLiveMatchTracker.ts(4,23): error TS2307: Cannot find module '@/lib/sports' or its corresponding type declarations.
+src/hooks/useLiveMatchTracker.ts(10,8): error TS2307: Cannot find module '@/lib/sports/liveMatchTracker' or its corresponding type declarations.
+src/hooks/useRedditContent.ts(7,28): error TS2307: Cannot find module './useConsent' or its corresponding type declarations.
+src/hooks/useVenues.ts(4,30): error TS2307: Cannot find module '@/lib/database/venues' or its corresponding type declarations.
+src/lib/performance/__tests__/integration.test.ts(13,1): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(14,3): error TS2304: Cannot find name 'beforeEach'.
+src/lib/performance/__tests__/integration.test.ts(23,3): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(24,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(38,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(39,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(40,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(41,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(42,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(45,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(51,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(55,3): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(56,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(65,31): error TS2304: Cannot find name 'jest'.
+src/lib/performance/__tests__/integration.test.ts(68,32): error TS2304: Cannot find name 'jest'.
+src/lib/performance/__tests__/integration.test.ts(71,13): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(76,13): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(81,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(82,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(86,3): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(87,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(95,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(102,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(105,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(107,29): error TS2304: Cannot find name 'jest'.
+src/lib/performance/__tests__/integration.test.ts(113,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(114,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(118,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(119,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(123,3): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(124,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(128,27): error TS2304: Cannot find name 'jest'.
+src/lib/performance/__tests__/integration.test.ts(144,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(145,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(146,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(150,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(154,3): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(155,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(164,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(165,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(168,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(169,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(170,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(173,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(197,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(198,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(201,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(202,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(206,3): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(207,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(234,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(235,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(236,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(237,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(241,3): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(242,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/integration.test.ts(244,31): error TS2304: Cannot find name 'jest'.
+src/lib/performance/__tests__/integration.test.ts(261,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(265,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(270,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(275,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/integration.test.ts(279,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(10,1): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(11,3): error TS2304: Cannot find name 'beforeEach'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(18,3): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(19,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(20,27): error TS2304: Cannot find name 'jest'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(32,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(33,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(36,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(39,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(40,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(41,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(42,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(43,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(46,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(47,27): error TS2304: Cannot find name 'jest'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(61,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(65,3): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(66,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(75,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(76,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(77,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(80,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(90,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(94,9): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(95,9): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(99,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(102,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(103,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(104,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(107,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(113,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(117,3): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(118,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(121,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(122,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(123,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(124,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(126,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(127,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(128,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(131,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(134,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(135,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(136,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(142,9): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(146,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(155,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(156,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(160,3): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(161,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(163,27): error TS2304: Cannot find name 'jest'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(189,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(190,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(193,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/performance/__tests__/vercelOptimization.test.ts(207,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(208,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/__tests__/vercelOptimization.test.ts(209,7): error TS2304: Cannot find name 'expect'.
+src/lib/performance/resourceMonitor.ts(432,21): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/lib/performance/vercelOptimizer.ts(461,33): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+src/lib/reddit/__tests__/contentFilter.test.ts(8,1): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/reddit/__tests__/contentFilter.test.ts(39,3): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/reddit/__tests__/contentFilter.test.ts(40,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/reddit/__tests__/contentFilter.test.ts(41,7): error TS2304: Cannot find name 'expect'.
+src/lib/reddit/__tests__/contentFilter.test.ts(46,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/reddit/__tests__/contentFilter.test.ts(47,7): error TS2304: Cannot find name 'expect'.
+src/lib/reddit/__tests__/contentFilter.test.ts(53,3): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/reddit/__tests__/contentFilter.test.ts(54,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/reddit/__tests__/contentFilter.test.ts(57,7): error TS2304: Cannot find name 'expect'.
+src/lib/reddit/__tests__/contentFilter.test.ts(58,7): error TS2304: Cannot find name 'expect'.
+src/lib/reddit/__tests__/contentFilter.test.ts(62,3): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/reddit/__tests__/contentFilter.test.ts(63,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/reddit/__tests__/contentFilter.test.ts(66,7): error TS2304: Cannot find name 'expect'.
+src/lib/reddit/__tests__/contentModerator.test.ts(8,1): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/reddit/__tests__/contentModerator.test.ts(30,3): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/reddit/__tests__/contentModerator.test.ts(31,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/reddit/__tests__/contentModerator.test.ts(33,7): error TS2304: Cannot find name 'expect'.
+src/lib/reddit/__tests__/contentModerator.test.ts(34,7): error TS2304: Cannot find name 'expect'.
+src/lib/reddit/__tests__/contentModerator.test.ts(37,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/reddit/__tests__/contentModerator.test.ts(39,7): error TS2304: Cannot find name 'expect'.
+src/lib/reddit/__tests__/contentModerator.test.ts(40,7): error TS2304: Cannot find name 'expect'.
+src/lib/reddit/__tests__/contentModerator.test.ts(44,3): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/reddit/__tests__/contentModerator.test.ts(45,5): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/lib/reddit/__tests__/contentModerator.test.ts(48,7): error TS2304: Cannot find name 'expect'.
+src/lib/reddit/contentFilter.ts(76,16): error TS2339: Property 'subreddits' does not exist on type 'RedditContentFilter'.
+src/lib/reddit/contentFilter.ts(77,17): error TS2339: Property 'subreddits' does not exist on type 'RedditContentFilter'.
+src/lib/reddit/contentFilter.ts(83,18): error TS2339: Property 'minScore' does not exist on type 'RedditContentFilter'.
+src/lib/reddit/contentFilter.ts(83,50): error TS2339: Property 'minScore' does not exist on type 'RedditContentFilter'.
+src/lib/reddit/contentFilter.ts(88,18): error TS2339: Property 'maxAge' does not exist on type 'RedditContentFilter'.
+src/lib/reddit/contentFilter.ts(91,30): error TS2339: Property 'maxAge' does not exist on type 'RedditContentFilter'.
+src/lib/reddit/contentFilter.ts(99,18): error TS2339: Property 'keywords' does not exist on type 'RedditContentFilter'.
+src/lib/reddit/contentFilter.ts(100,35): error TS2339: Property 'keywords' does not exist on type 'RedditContentFilter'.
+src/lib/reddit/contentFilter.ts(100,50): error TS7006: Parameter 'keyword' implicitly has an 'any' type.
+src/lib/reddit/contentFilter.ts(107,18): error TS2339: Property 'excludeKeywords' does not exist on type 'RedditContentFilter'.
+src/lib/reddit/contentFilter.ts(108,43): error TS2339: Property 'excludeKeywords' does not exist on type 'RedditContentFilter'.
+src/lib/reddit/contentFilter.ts(108,65): error TS7006: Parameter 'keyword' implicitly has an 'any' type.
+src/middleware/privacy.ts(7,30): error TS2307: Cannot find module '@/lib/supabase/server' or its corresponding type declarations.
+src/utils/__tests__/distance.property.test.ts(8,1): error TS2582: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/utils/__tests__/distance.property.test.ts(10,3): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/utils/__tests__/distance.property.test.ts(18,7): error TS2304: Cannot find name 'expect'.
+src/utils/__tests__/distance.property.test.ts(23,3): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/utils/__tests__/distance.property.test.ts(29,7): error TS2304: Cannot find name 'expect'.
+src/utils/__tests__/distance.property.test.ts(34,3): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/utils/__tests__/distance.property.test.ts(44,7): error TS2304: Cannot find name 'expect'.
+src/utils/__tests__/distance.property.test.ts(49,3): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/utils/__tests__/distance.property.test.ts(62,7): error TS2304: Cannot find name 'expect'.
+src/utils/__tests__/distance.property.test.ts(67,3): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/utils/__tests__/distance.property.test.ts(82,5): error TS2304: Cannot find name 'expect'.
+src/utils/__tests__/distance.property.test.ts(83,5): error TS2304: Cannot find name 'expect'.
+src/utils/__tests__/distance.property.test.ts(87,3): error TS2582: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
+src/utils/__tests__/distance.property.test.ts(113,7): error TS2304: Cannot find name 'expect'.
+src/utils/__tests__/distance.property.test.ts(114,7): error TS2304: Cannot find name 'expect'.
