@@ -22,13 +22,13 @@ import { useFavoriteTeam } from '@/context/FavoriteTeamContext';
 
 const navItems = [
   { name: 'Home', href: '/', icon: Home },
-  { name: 'Schedule', href: '/live', icon: Radio },
+  { name: 'Schedule', href: '/schedule', icon: Radio },
   { name: 'Teams', href: '/teams', icon: Users },
   { name: 'Agents', href: '/agents', icon: Bot },
   { name: 'Brackets', href: '/brackets', icon: Trophy },
-  { name: 'Watch Parties', href: '/map', icon: MapPin },
-  { name: 'Fan Pulse', href: '/community', icon: Users },
-  { name: 'Groups', href: '/standings', icon: BarChart2 },
+  { name: 'Watch Parties', href: '/watch-parties', icon: MapPin },
+  { name: 'Fan Pulse', href: '/fan-pulse', icon: Users },
+  { name: 'Groups', href: '/groups', icon: BarChart2 },
   { name: 'Stats', href: '/stats', icon: Zap },
 ];
 

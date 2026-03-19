@@ -19,6 +19,8 @@
     --accent-3: #7c3aed;
     --live: #ff4444;
     --gold: #ffd700;
+    --warning: #ff9f1c;
+    --ticker-text: #08080e;
     --shadow: rgba(0, 0, 0, 0.5);
 
     color-scheme: dark;
@@ -40,6 +42,8 @@
     --accent-3: #5b21b6;
     --live: #cc1111;
     --gold: #a68b00;
+    --warning: #e67e22;
+    --ticker-text: #05050a;
     --shadow: rgba(0, 0, 0, 0.1);
 
     color-scheme: light;

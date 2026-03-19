@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { ArrowBigUp, Clock, Loader2 } from 'lucide-react';
+import { ArrowBigUp, Clock, Loader2, RefreshCw } from 'lucide-react';
 import { useFavoriteTeam } from '@/context/FavoriteTeamContext';
 
 interface RedditPost {
@@ -28,8 +28,71 @@ function formatScore(n: number) {
   return n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n);
 }
 function getHoursAgo(utc: number) {
-  return Math.floor((Date.now() / 1000 - utc) / 3600);
+  return Math.max(1, Math.floor((Date.now() / 1000 - utc) / 3600));
 }
+
+const STATIC_FALLBACK_POSTS: RedditPost[] = [
+  {
+    id: 'fb1',
+    subreddit: 'r/CanadaSoccer',
+    title: "Canada's 2026 Squad depth: Is this the strongest roster we've ever seen?",
+    author: 'MapleLeafMatrix',
+    score: 1250,
+    num_comments: 84,
+    created_utc: Math.floor(Date.now() / 1000) - 3600 * 2,
+    permalink: '#',
+  },
+  {
+    id: 'fb2',
+    subreddit: 'r/worldcup',
+    title: 'Inside the 16 Host Venues: Which stadium will have the best atmosphere?',
+    author: 'StadiumHopper',
+    score: 892,
+    num_comments: 156,
+    created_utc: Math.floor(Date.now() / 1000) - 3600 * 5,
+    permalink: '#',
+  },
+  {
+    id: 'fb3',
+    subreddit: 'r/soccer',
+    title: '48 Teams Format: Genius expansion or Diluting the quality?',
+    author: 'TacticalWizard',
+    score: 2105,
+    num_comments: 432,
+    created_utc: Math.floor(Date.now() / 1000) - 3600 * 8,
+    permalink: '#',
+  },
+  {
+    id: 'fb4',
+    subreddit: 'r/worldcup',
+    title: '2026 Power Rankings: Brazil, France, or Argentina - who are the favorites?',
+    author: 'EloExpert',
+    score: 1540,
+    num_comments: 210,
+    created_utc: Math.floor(Date.now() / 1000) - 3600 * 12,
+    permalink: '#',
+  },
+  {
+    id: 'fb5',
+    subreddit: 'r/soccer',
+    title: 'VAR in 2026: FIFA confirms even more automated technology - Controversy incoming?',
+    author: 'RefWatchdog',
+    score: 3420,
+    num_comments: 890,
+    created_utc: Math.floor(Date.now() / 1000) - 3600 * 15,
+    permalink: '#',
+  },
+  {
+    id: 'fb6',
+    subreddit: 'r/MLS',
+    title: 'The Dark Horse candidates: Why Morocco or Japan could win it all in 2026.',
+    author: 'UnderdogFan',
+    score: 967,
+    num_comments: 112,
+    created_utc: Math.floor(Date.now() / 1000) - 3600 * 20,
+    permalink: '#',
+  },
+];
 
 // Keyword-based sentiment
 function getSentiment(title: string): {
@@ -132,6 +195,25 @@ function extractTopics(posts: RedditPost[], favTeamName?: string): string[] {
 
 const TOPIC_EMOJIS = ['🔥', '📊', '⚡', '🏆', '🎯', '💬', '🌍', '⚽'];
 
+function SkeletonCard() {
+  return (
+    <div className="p-4 rounded-2xl bg-[var(--card)] border border-[var(--border)] animate-pulse">
+      <div className="flex items-center gap-2 mb-3">
+        <div className="w-16 h-4 bg-[var(--border)] rounded-full opacity-20" />
+        <div className="w-16 h-4 bg-[var(--border)] rounded-full opacity-20" />
+        <div className="w-12 h-3 bg-[var(--border)] rounded-full ml-auto opacity-10" />
+      </div>
+      <div className="h-4 bg-[var(--border)] rounded w-3/4 mb-2 opacity-20" />
+      <div className="h-4 bg-[var(--border)] rounded w-1/2 mb-4 opacity-20" />
+      <div className="flex items-center gap-4">
+        <div className="w-10 h-3 bg-[var(--border)] rounded opacity-10" />
+        <div className="w-10 h-3 bg-[var(--border)] rounded opacity-10" />
+        <div className="w-20 h-3 bg-[var(--border)] rounded ml-auto opacity-10" />
+      </div>
+    </div>
+  );
+}
+
 function PostCard({ post }: { post: RedditPost }) {
   const hoursAgo = getHoursAgo(post.created_utc);
   const sentiment = getSentiment(post.title);
@@ -139,10 +221,11 @@ function PostCard({ post }: { post: RedditPost }) {
 
   return (
     <a
-      href={`https://reddit.com${post.permalink}`}
+      href={post.permalink === '#' ? undefined : `https://reddit.com${post.permalink}`}
       target="_blank"
       rel="noopener noreferrer"
       className="block p-4 rounded-2xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--border-hover)] hover:bg-[var(--card-hover)] transition-all touch-manipulation active:scale-[0.98]"
+      onClick={(e) => post.permalink === '#' && e.preventDefault()}
     >
       <div className="flex items-center gap-2 mb-2">
         <span
@@ -191,30 +274,62 @@ function PostCard({ post }: { post: RedditPost }) {
 export default function CommunityPage() {
   const { team } = useFavoriteTeam();
   const [activeSub, setActiveSub] = useState('All');
+  const [activeSentiment, setActiveSentiment] = useState<'All' | 'Hype' | 'Debate' | 'Drama'>('All');
   const [posts, setPosts] = useState<RedditPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isFallback, setIsFallback] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState<number | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
+    let timer: NodeJS.Timeout;
+    const controller = new AbortController();
+
     async function fetchPosts() {
       try {
         setLoading(true);
-        const res = await fetch('/api/reddit');
+        // Minimum loading time of 1s for the skeleton effect, but up to 3s timeout
+        const fetchPromise = fetch('/api/reddit', { signal: controller.signal });
+        const timeoutPromise = new Promise((_, reject) => {
+          timer = setTimeout(() => reject(new Error('timeout')), 3000);
+        });
+
+        const res = (await Promise.race([fetchPromise, timeoutPromise])) as Response;
+        clearTimeout(timer);
+
+        if (!res.ok) throw new Error('API error');
         const data = await res.json();
-        if (data.posts) setPosts(data.posts);
+        
+        if (data.posts && data.posts.length > 0) {
+          setPosts(data.posts);
+          setIsFallback(false);
+          setLastUpdated(Date.now());
+        } else {
+          throw new Error('No posts');
+        }
       } catch (err) {
-        console.error('Failed to load posts', err);
+        console.error('Failed to load posts, using fallback', err);
+        setPosts(STATIC_FALLBACK_POSTS);
+        setIsFallback(true);
+        setLastUpdated(null);
       } finally {
-        setLoading(false);
+        // Ensure skeletons show for at least 1s for visual stability
+        setTimeout(() => setLoading(false), 800);
       }
     }
-    fetchPosts();
-  }, []);
 
-  const filtered = posts.filter(
-    (p) =>
-      activeSub === 'All' ||
-      p.subreddit.toLowerCase() === activeSub.toLowerCase()
-  );
+    fetchPosts();
+    return () => {
+      controller.abort();
+      clearTimeout(timer);
+    };
+  }, [refreshKey]);
+
+  const filtered = posts.filter((p) => {
+    const subMatch = activeSub === 'All' || p.subreddit.toLowerCase() === activeSub.toLowerCase();
+    const sentimentMatch = activeSentiment === 'All' || getSentiment(p.title).label === activeSentiment;
+    return subMatch && sentimentMatch;
+  });
   const topics = useMemo(
     () => extractTopics(posts, team?.name),
     [posts, team?.name]
@@ -223,17 +338,44 @@ export default function CommunityPage() {
   return (
     <div className="w-full max-w-[800px] mx-auto px-4 py-8 pb-24">
       {/* ── HEADER ── */}
-      <div className="mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-3)]/10 border border-[var(--accent-3)]/20 text-[10px] font-bold text-[var(--accent-3)] uppercase tracking-widest mb-4">
-          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-3)] animate-pulse inline-block" />
-          Live from Reddit
+      <div className="mb-8 relative">
+        <div className="flex items-center justify-between gap-4 mb-4">
+          <div
+            className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[10px] font-bold uppercase tracking-widest transition-colors ${
+              isFallback
+                ? 'bg-[var(--warning)]/10 border-[var(--warning)]/20 text-[var(--warning)]'
+                : 'bg-[var(--accent-3)]/10 border-[var(--accent-3)]/20 text-[var(--accent-3)]'
+            }`}
+          >
+            <span
+              className={`w-1.5 h-1.5 rounded-full animate-pulse inline-block ${
+                isFallback ? 'bg-[var(--warning)]' : 'bg-[var(--accent-3)]'
+              }`}
+            />
+            {isFallback ? "Editor's Picks" : 'Live from r/worldcup'}
+          </div>
+          <button
+            onClick={() => setRefreshKey((k) => k + 1)}
+            disabled={loading}
+            className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[var(--card)] border border-[var(--border)] text-[10px] font-bold text-[var(--text)] hover:bg-[var(--card-hover)] transition-all disabled:opacity-50"
+          >
+            <RefreshCw className={`w-3 h-3 ${loading ? 'animate-spin' : ''}`} />
+            Refresh
+          </button>
         </div>
         <h1 className="font-display text-4xl mb-2">
           Fan <span className="text-[var(--accent-3)]">Pulse</span>
         </h1>
-        <p className="text-sm text-[var(--muted)]">
-          Real talk from football&apos;s loudest corners of the internet.
-        </p>
+        <div className="flex items-center justify-between gap-4">
+          <p className="text-sm text-[var(--muted)]">
+            Real talk from football&apos;s loudest corners of the internet.
+          </p>
+          {lastUpdated && !isFallback && (
+            <p className="text-[10px] text-[var(--muted)] font-mono">
+              Updated: {new Date(lastUpdated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            </p>
+          )}
+        </div>
       </div>
 
       {/* ── TRENDING TOPICS ── */}
@@ -255,23 +397,29 @@ export default function CommunityPage() {
         </section>
       )}
 
-      {/* ── SENTIMENT LEGEND ── */}
+      {/* ── SENTIMENT FILTERS ── */}
       <div className="flex items-center gap-3 mb-5 p-3 rounded-xl bg-[var(--card)] border border-[var(--border)]">
         <span className="text-[10px] text-[var(--muted)] font-bold uppercase tracking-wider">
-          Sentiment:
+          Filter:
         </span>
         {[
+          { label: 'All', emoji: '🌐', color: 'var(--text)' },
           { emoji: '🟢', label: 'Hype', color: '#00e5a0' },
           { emoji: '🟡', label: 'Debate', color: '#ffd700' },
           { emoji: '🔴', label: 'Drama', color: '#ff4d6d' },
         ].map((s) => (
-          <span
+          <button
             key={s.label}
-            className="flex items-center gap-1 text-[10px] font-semibold"
+            onClick={() => setActiveSentiment(s.label as any)}
+            className={`flex items-center gap-1 text-[10px] font-semibold px-2 py-1 rounded-md transition-all ${
+              activeSentiment === s.label
+                ? 'bg-[var(--border)] ring-1 ring-[var(--border-hover)]'
+                : 'hover:bg-[var(--card-hover)]'
+            }`}
             style={{ color: s.color }}
           >
             {s.emoji} {s.label}
-          </span>
+          </button>
         ))}
       </div>
 
@@ -301,18 +449,18 @@ export default function CommunityPage() {
         })}
       </div>
 
-      {/* ── POSTS ── */}
       <div className="flex flex-col gap-3">
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-12 gap-3 text-[var(--muted)]">
-            <Loader2 className="w-6 h-6 animate-spin text-[var(--accent-3)]" />
-            <p className="text-sm">Fetching latest buzz…</p>
-          </div>
+          <>
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+          </>
         ) : filtered.length > 0 ? (
           filtered.map((post) => <PostCard key={post.id} post={post} />)
         ) : (
           <div className="text-center py-12 text-[var(--muted)] bg-[var(--card)] rounded-xl border border-[var(--border)]">
-            <p className="text-sm">No recent posts for {activeSub}.</p>
+            <p className="text-sm">No recent posts matching your filters.</p>
           </div>
         )}
       </div>

@@ -55,6 +55,30 @@ const nextConfig = {
     }
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: '/live',
+        destination: '/schedule',
+        permanent: true,
+      },
+      {
+        source: '/map',
+        destination: '/watch-parties',
+        permanent: true,
+      },
+      {
+        source: '/community',
+        destination: '/fan-pulse',
+        permanent: true,
+      },
+      {
+        source: '/standings',
+        destination: '/groups',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 // PWA configuration

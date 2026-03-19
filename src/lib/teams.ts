@@ -4,17 +4,38 @@ export interface Team {
   flagCode: string; // alpha-2 code for flag icons
   group?: string; // e.g. "A", "B", etc for WC2026 once drawn
   region: string;
+  rank?: number;
+  titles?: number;
+  formation?: string;
+  style?: string[];
+  recentForm?: string[];
 }
 
 export const MAJOR_TEAMS: Team[] = [
   // Hosts
-  { id: '133602', name: 'USA', flagCode: 'us', region: 'CONCACAF', group: 'D' },
+  {
+    id: '133602',
+    name: 'USA',
+    flagCode: 'us',
+    region: 'CONCACAF',
+    group: 'D',
+    rank: 13,
+    titles: 0,
+    formation: '4-3-3',
+    style: ['High Press', 'Athletic'],
+    recentForm: ['W', 'L', 'W', 'W', 'D'],
+  },
   {
     id: '133660',
     name: 'Canada',
     flagCode: 'ca',
     region: 'CONCACAF',
     group: 'B',
+    rank: 40,
+    titles: 0,
+    formation: '4-2-3-1',
+    style: ['Counter-Attack', 'Pacey'],
+    recentForm: ['W', 'D', 'L', 'W', 'W'],
   },
   {
     id: '133621',
@@ -22,6 +43,11 @@ export const MAJOR_TEAMS: Team[] = [
     flagCode: 'mx',
     region: 'CONCACAF',
     group: 'A',
+    rank: 15,
+    titles: 0,
+    formation: '4-3-3',
+    style: ['Possession', 'Technical'],
+    recentForm: ['L', 'W', 'D', 'L', 'W'],
   },
 
   // CONMEBOL
@@ -31,6 +57,11 @@ export const MAJOR_TEAMS: Team[] = [
     flagCode: 'ar',
     region: 'CONMEBOL',
     group: 'C',
+    rank: 1,
+    titles: 3,
+    formation: '4-3-3',
+    style: ['Control', 'Creative'],
+    recentForm: ['W', 'W', 'W', 'W', 'D'],
   },
   {
     id: '133612',
@@ -38,6 +69,11 @@ export const MAJOR_TEAMS: Team[] = [
     flagCode: 'br',
     region: 'CONMEBOL',
     group: 'C',
+    rank: 5,
+    titles: 5,
+    formation: '4-2-3-1',
+    style: ['Flair', 'Attacking'],
+    recentForm: ['W', 'D', 'L', 'W', 'D'],
   },
   {
     id: '133620',
@@ -45,6 +81,11 @@ export const MAJOR_TEAMS: Team[] = [
     flagCode: 'uy',
     region: 'CONMEBOL',
     group: 'H',
+    rank: 11,
+    titles: 2,
+    formation: '4-3-3',
+    style: ['Tenacious', 'Direct'],
+    recentForm: ['W', 'W', 'D', 'W', 'L'],
   },
   {
     id: '133580',
@@ -52,27 +93,75 @@ export const MAJOR_TEAMS: Team[] = [
     flagCode: 'co',
     region: 'CONMEBOL',
     group: 'I',
+    rank: 12,
+    titles: 0,
+    formation: '4-2-3-1',
+    style: ['Speed', 'Technical'],
+    recentForm: ['W', 'W', 'W', 'D', 'W'],
   },
 
   // UEFA
-  { id: '133608', name: 'France', flagCode: 'fr', region: 'UEFA', group: 'F' },
+  {
+    id: '133608',
+    name: 'France',
+    flagCode: 'fr',
+    region: 'UEFA',
+    group: 'F',
+    rank: 2,
+    titles: 2,
+    formation: '4-2-3-1',
+    style: ['Power', 'Speed'],
+    recentForm: ['W', 'W', 'D', 'W', 'W'],
+  },
   {
     id: '133610',
     name: 'England',
     flagCode: 'gb-eng',
     region: 'UEFA',
     group: 'L',
+    rank: 4,
+    titles: 1,
+    formation: '4-2-3-1',
+    style: ['Organised', 'Elite'],
+    recentForm: ['W', 'W', 'W', 'D', 'L'],
   },
-  { id: '133601', name: 'Spain', flagCode: 'es', region: 'UEFA', group: 'H' },
-  { id: '133609', name: 'Germany', flagCode: 'de', region: 'UEFA', group: 'E' },
-  { id: '133600', name: 'Italy', flagCode: 'it', region: 'UEFA', group: 'J' },
   {
-    id: '133611',
-    name: 'Portugal',
-    flagCode: 'pt',
+    id: '133601',
+    name: 'Spain',
+    flagCode: 'es',
     region: 'UEFA',
-    group: 'K',
+    group: 'H',
+    rank: 8,
+    titles: 1,
+    formation: '4-3-3',
+    style: ['Tiki-Taka', 'Fluid'],
+    recentForm: ['W', 'W', 'W', 'W', 'W'],
   },
+  {
+    id: '133609',
+    name: 'Germany',
+    flagCode: 'de',
+    region: 'UEFA',
+    group: 'E',
+    rank: 16,
+    titles: 4,
+    formation: '4-2-3-1',
+    style: ['Efficient', 'Dominant'],
+    recentForm: ['W', 'D', 'W', 'W', 'L'],
+  },
+  {
+    id: '133600',
+    name: 'Italy',
+    flagCode: 'it',
+    region: 'UEFA',
+    group: 'J',
+    rank: 9,
+    titles: 4,
+    formation: '4-3-3',
+    style: ['Tactical', 'Solid'],
+    recentForm: ['W', 'D', 'W', 'L', 'W'],
+  },
+  { id: '133611', name: 'Portugal', flagCode: 'pt', region: 'UEFA', group: 'K' },
   {
     id: '133616',
     name: 'Netherlands',

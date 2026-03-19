@@ -336,7 +336,7 @@ export default function Home() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
           {[
             {
-              href: '/countdown',
+              href: '/schedule',
               emoji: '📅',
               label: 'Schedule',
               sub: 'WC2026 timeline',
@@ -345,8 +345,8 @@ export default function Home() {
             {
               href: '/groups',
               emoji: '🗂️',
-              label: 'The 48 Groups',
-              sub: 'All 12 groups',
+              label: 'The 12 Groups',
+              sub: 'All 48 teams',
               color: 'var(--accent-2)',
             },
             {
