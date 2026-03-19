@@ -74,7 +74,7 @@ function TypingIndicator() {
       {[0, 1, 2].map((i) => (
         <span
           key={i}
-          className="w-2 h-2 rounded-full bg-[var(--muted)] animate-bounce"
+          className="w-2 h-2 rounded-full bg-[var(--c-text-tertiary)] animate-bounce"
           style={{ animationDelay: `${i * 150}ms`, animationDuration: '0.8s' }}
         />
       ))}
@@ -103,7 +103,7 @@ function ChatMessage({
       className={`flex ${isUser ? 'justify-end' : 'justify-start'} px-4 py-2`}
     >
       {!isUser && (
-        <div className="shrink-0 w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-base mr-3 mt-1 shadow-lg backdrop-blur-md">
+        <div className="shrink-0 w-8 h-8 rounded-full bg-[var(--c-bg-subtle)] border border-[var(--c-border)] flex items-center justify-center text-base mr-3 mt-1 shadow-lg backdrop-blur-md">
           {agentAvatar}
         </div>
       )}
@@ -111,22 +111,22 @@ function ChatMessage({
         className={`flex flex-col ${isUser ? 'items-end' : 'items-start'} max-w-[85%] md:max-w-[70%]`}
       >
         {!isUser && (
-          <span className="text-[10px] font-black text-[var(--muted)] uppercase tracking-[0.2em] mb-1.5 ml-1 opacity-60">
+          <span className="badge-text text-[var(--c-text-tertiary)] mb-1.5 ml-1 opacity-60 uppercase">
             {agentName}
           </span>
         )}
         <div
-          className={`relative px-5 py-3.5 rounded-[2rem] text-sm leading-relaxed shadow-xl backdrop-blur-xl border transition-all duration-300 ${
+          className={`relative px-5 py-3.5 rounded-xl text-sm leading-relaxed shadow-xl backdrop-blur-xl border transition-all duration-300 ${
             isUser
-              ? 'bg-[var(--accent)] text-black border-[var(--accent)]/20 rounded-tr-md font-semibold'
-              : 'bg-[var(--card)]/40 text-[var(--text)] border-[var(--border)] rounded-tl-md'
+              ? 'bg-[var(--c-accent)] text-[var(--c-accent-text)] border-[var(--c-accent)]/20 rounded-tr-sm font-semibold'
+              : 'bg-[var(--c-bg-surface)] text-[var(--c-text-primary)] border-[var(--c-border)] rounded-tl-sm'
           }`}
         >
           {isLoading ? (
             <TypingIndicator />
           ) : (
             <div
-              className={`prose prose-sm dark:prose-invert max-w-none ${isUser ? 'text-black' : ''} prose-p:my-0 prose-p:mb-2 last:prose-p:mb-0`}
+              className={`prose prose-sm dark:prose-invert max-w-none ${isUser ? 'text-[var(--c-accent-text)]' : 'text-[var(--c-text-primary)]'} prose-p:my-0 prose-p:mb-2 last:prose-p:mb-0`}
             >
               <ReactMarkdown>{msg.content}</ReactMarkdown>
             </div>
@@ -229,45 +229,45 @@ export default function AgentChatPage({
   };
 
   return (
-    <div className="fixed inset-0 flex flex-col bg-[var(--bg)] text-[var(--text)] z-[100] isolate overflow-hidden">
+    <div className="fixed inset-0 flex flex-col bg-[var(--c-bg-subtle)] text-[var(--c-text-primary)] z-[100] isolate overflow-hidden">
       {/* ── IMMERSIVE ENVIRONMENT ── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div
           className="absolute inset-0 opacity-40 transition-colors duration-1000"
           style={{
-            background: `radial-gradient(circle at 50% -20%, color-mix(in srgb, var(--accent) 15%, transparent), transparent 70%)`,
+            background: `radial-gradient(circle at 50% -20%, color-mix(in srgb, var(--c-accent) 15%, transparent), transparent 70%)`,
           }}
         />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay" />
-        <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-[var(--bg)] to-transparent z-10" />
+        <div className="absolute inset-0 bg-[var(--c-bg-surface)] opacity-[0.03] mix-blend-overlay" />
+        <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-[var(--c-bg-subtle)] to-transparent z-10" />
       </div>
 
       {/* ── TOP NAV ── */}
-      <header className="relative z-50 flex items-center h-20 px-6 border-b border-[var(--border)] backdrop-blur-2xl bg-[var(--bg)]/60">
+      <header className="relative z-50 flex items-center h-20 px-6 border-b border-[var(--c-border)] backdrop-blur-2xl bg-[var(--c-bg-surface)]/60">
         <button
           onClick={() => router.push('/agents')}
-          className="group w-10 h-10 flex items-center justify-center rounded-2xl bg-[var(--card)]/40 border border-[var(--border)] hover:border-[var(--accent)]/40 hover:bg-[var(--card)]/60 transition-all active:scale-95 mr-4"
+          className="group w-10 h-10 flex items-center justify-center rounded-xl bg-[var(--c-bg-surface)] border border-[var(--c-border)] hover:border-[var(--c-accent)]/40 hover:bg-[var(--c-bg-subtle)] transition-all active:scale-95 mr-4"
         >
-          <ChevronLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
+          <ChevronLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform text-[var(--c-text-primary)]" />
         </button>
 
         <div className="flex items-center gap-4 flex-1 min-w-0">
           <div
-            className="w-12 h-12 rounded-2xl flex items-center justify-center text-3xl shadow-2xl border border-[var(--border)] relative overflow-hidden"
+            className="w-12 h-12 rounded-xl flex items-center justify-center text-3xl shadow-lg border border-[var(--c-border)] relative overflow-hidden"
             style={{
-              backgroundColor: `color-mix(in srgb, var(--accent) 10%, var(--card))`,
+              backgroundColor: `color-mix(in srgb, var(--c-accent) 10%, var(--c-bg-surface))`,
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-[var(--accent)]/10 to-transparent opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-[var(--c-accent)]/10 to-transparent opacity-50" />
             <span className="relative z-10">{agent.avatar}</span>
           </div>
           <div className="flex flex-col min-w-0">
-            <h1 className="font-display text-lg leading-none tracking-tight truncate">
+            <h1 className="card-title text-[var(--c-text-primary)] truncate">
               {agent.name}
             </h1>
             <div className="flex items-center gap-2 mt-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--accent)] opacity-80 truncate">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--c-accent)] animate-pulse" />
+              <span className="badge-text text-[var(--c-accent)] opacity-80 truncate uppercase">
                 {agent.role}
               </span>
             </div>
@@ -280,12 +280,12 @@ export default function AgentChatPage({
               onClick={() => {
                 if (confirm('Purge neural data?')) setMessages([]);
               }}
-              className="w-10 h-10 flex items-center justify-center rounded-2xl bg-[var(--card)]/40 border border-[var(--border)] hover:bg-[var(--card)]/60 text-[var(--muted)] hover:text-[var(--text)] transition-all active:scale-90"
+              className="w-10 h-10 flex items-center justify-center rounded-xl bg-[var(--c-bg-surface)] border border-[var(--c-border)] hover:bg-[var(--c-bg-subtle)] text-[var(--c-text-tertiary)] hover:text-[var(--c-text-primary)] transition-all active:scale-90"
             >
               <RotateCcw className="w-4 h-4" />
             </button>
           )}
-          <div className="hidden sm:block px-3 py-1.5 rounded-full bg-[var(--card)]/40 border border-[var(--border)] text-[8px] font-black uppercase tracking-[0.2em] text-[var(--muted)]">
+          <div className="hidden sm:block px-3 py-1.5 rounded-full bg-[var(--c-bg-surface)] border border-[var(--c-border)] badge-text text-[var(--c-text-tertiary)] uppercase whitespace-nowrap">
             Sync: Optimal
           </div>
         </div>
@@ -309,8 +309,8 @@ export default function AgentChatPage({
                 transition={{ type: 'spring', damping: 15 }}
                 className="relative mb-8"
               >
-                <div className="absolute inset-0 bg-[var(--accent)]/20 blur-[60px] rounded-full scale-150 animate-pulse" />
-                <div className="relative w-32 h-32 rounded-[2.5rem] bg-[var(--card)] border border-[var(--border)] flex items-center justify-center text-6xl shadow-[0_32px_64px_-12px_rgba(0,0,0,0.5)]">
+                <div className="absolute inset-0 bg-[var(--c-accent)]/20 blur-[60px] rounded-full scale-150 animate-pulse" />
+                <div className="relative w-32 h-32 rounded-xl bg-[var(--c-bg-surface)] border border-[var(--c-border)] flex items-center justify-center text-6xl shadow-2xl">
                   {agent.avatar}
                 </div>
               </motion.div>
@@ -320,15 +320,15 @@ export default function AgentChatPage({
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
               >
-                <h2 className="font-display text-4xl mb-3 tracking-tighter">
+                <h2 className="section-title text-4xl mb-3 text-[var(--c-text-primary)]">
                   Initialize Link with {agent.name}
                 </h2>
-                <p className="text-[var(--text-2)] text-lg mb-10 leading-relaxed balance opacity-80 font-medium">
+                <p className="body-text text-lg mb-10 text-[var(--c-text-secondary)] font-medium">
                   {agent.description} I am ready to provide deep insights
                   tailored to your requirements.
                 </p>
 
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3 pb-24">
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 pb-24">
                   {prompts.map((p, i) => (
                     <motion.button
                       key={p}
@@ -336,15 +336,15 @@ export default function AgentChatPage({
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 + i * 0.1 }}
                       onClick={() => sendMessage(p)}
-                      className="group flex flex-col items-start p-5 rounded-3xl bg-[var(--card)]/40 border border-[var(--border)] hover:border-[var(--accent)]/40 hover:bg-[var(--card)]/60 transition-all text-left relative overflow-hidden active:scale-[0.98]"
+                      className="group flex flex-col items-start p-5 rounded-xl bg-[var(--c-bg-surface)] border border-[var(--c-border)] hover:border-[var(--c-accent)]/40 hover:bg-[var(--c-bg-subtle)] transition-all text-left relative overflow-hidden active:scale-[0.98] shadow-sm"
                     >
                       <div className="absolute top-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Send className="w-3 h-3 text-[var(--accent)]" />
+                        <Send className="w-4 h-4 text-[var(--c-accent)]" />
                       </div>
-                      <span className="text-[8px] font-black uppercase tracking-[0.2em] text-[var(--muted)] mb-2 group-hover:text-[var(--accent)] transition-colors">
+                      <span className="badge-text text-[var(--c-text-tertiary)] mb-2 group-hover:text-[var(--c-accent)] transition-colors uppercase">
                         Suggested Query
                       </span>
-                      <span className="text-sm text-[var(--text)] font-semibold leading-tight line-clamp-2">
+                      <span className="card-title text-[var(--c-text-primary)] leading-tight line-clamp-2">
                         {p}
                       </span>
                     </motion.button>
@@ -381,11 +381,11 @@ export default function AgentChatPage({
       </main>
 
       {/* ── INPUT SYSTEM ── */}
-      <footer className="relative z-50 p-6 pt-2 border-t border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur-3xl">
+      <footer className="relative z-50 p-6 pt-2 border-t border-[var(--c-border)] bg-[var(--c-bg-surface)]/80 backdrop-blur-3xl">
         <div className="max-w-4xl mx-auto">
           <form
             onSubmit={handleSubmit}
-            className="group relative flex items-end gap-3 bg-[var(--card)]/40 border border-[var(--border)] rounded-[2.5rem] p-2 pl-6 focus-within:border-[var(--accent)]/40 transition-all duration-500 shadow-2xl"
+            className="group relative flex items-end gap-3 bg-[var(--c-bg-surface)] border border-[var(--c-border)] rounded-xl p-2 pl-6 focus-within:border-[var(--c-accent)]/40 transition-all duration-500 shadow-xl"
           >
             <textarea
               ref={textareaRef}
@@ -395,15 +395,15 @@ export default function AgentChatPage({
               placeholder={`Communicate with ${agent.name}...`}
               rows={1}
               disabled={isLoading}
-              className="flex-1 bg-transparent text-[var(--text)] resize-none outline-none py-4 text-[16px] placeholder-[var(--text)]/20 max-h-[130px] no-scrollbar font-medium"
+              className="flex-1 bg-transparent text-[var(--c-text-primary)] resize-none outline-none py-4 text-[16px] placeholder-[var(--c-text-tertiary)] max-h-[130px] no-scrollbar font-medium"
             />
             <button
               type="submit"
               disabled={!input.trim() || isLoading}
-              className={`shrink-0 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 mb-1 mr-1 ${
+              className={`shrink-0 w-12 h-12 rounded-lg flex items-center justify-center transition-all duration-300 mb-1 mr-1 ${
                 input.trim() && !isLoading
-                  ? 'bg-[var(--accent)] text-[var(--team-text)] shadow-[0_0_20px_rgba(0,229,160,0.4)] scale-100 rotate-0'
-                  : 'bg-[var(--card)]/20 text-[var(--text)]/20 scale-90 rotate-12'
+                  ? 'bg-[var(--c-accent)] text-[var(--c-accent-text)] shadow-lg scale-100 rotate-0'
+                  : 'bg-[var(--c-bg-subtle)] text-[var(--c-text-tertiary)] scale-90 rotate-12'
               }`}
             >
               {isLoading ? (
@@ -413,11 +413,11 @@ export default function AgentChatPage({
               )}
             </button>
           </form>
-          <div className="flex items-center justify-between px-6 mt-3">
-            <div className="text-[8px] font-black uppercase tracking-[0.2em] text-[var(--muted)] animate-pulse">
+          <div className="flex items-center justify-between px-6 mt-4">
+            <div className="badge-text text-[var(--c-accent)] animate-pulse uppercase">
               System Online • Encrypted Channel
             </div>
-            <p className="text-[8px] font-black uppercase tracking-[0.2em] text-[var(--muted)]/40">
+            <p className="badge-text text-[var(--c-text-tertiary)] opacity-40 uppercase">
               Neural content may vary
             </p>
           </div>

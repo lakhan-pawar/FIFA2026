@@ -197,18 +197,18 @@ const TOPIC_EMOJIS = ['🔥', '📊', '⚡', '🏆', '🎯', '💬', '🌍', '�
 
 function SkeletonCard() {
   return (
-    <div className="p-4 rounded-2xl bg-[var(--card)] border border-[var(--border)] animate-pulse">
+    <div className="p-4 rounded-xl bg-[var(--c-bg-surface)] border-[0.5px] border-[var(--c-border)] animate-pulse shadow-sm">
       <div className="flex items-center gap-2 mb-3">
-        <div className="w-16 h-4 bg-[var(--border)] rounded-full opacity-20" />
-        <div className="w-16 h-4 bg-[var(--border)] rounded-full opacity-20" />
-        <div className="w-12 h-3 bg-[var(--border)] rounded-full ml-auto opacity-10" />
+        <div className="w-16 h-4 bg-[var(--c-bg-subtle)] rounded-full" />
+        <div className="w-16 h-4 bg-[var(--c-bg-subtle)] rounded-full" />
+        <div className="w-12 h-3 bg-[var(--c-bg-subtle)] rounded-full ml-auto" />
       </div>
-      <div className="h-4 bg-[var(--border)] rounded w-3/4 mb-2 opacity-20" />
-      <div className="h-4 bg-[var(--border)] rounded w-1/2 mb-4 opacity-20" />
+      <div className="h-4 bg-[var(--c-bg-subtle)] rounded w-3/4 mb-2" />
+      <div className="h-4 bg-[var(--c-bg-subtle)] rounded w-1/2 mb-4" />
       <div className="flex items-center gap-4">
-        <div className="w-10 h-3 bg-[var(--border)] rounded opacity-10" />
-        <div className="w-10 h-3 bg-[var(--border)] rounded opacity-10" />
-        <div className="w-20 h-3 bg-[var(--border)] rounded ml-auto opacity-10" />
+        <div className="w-10 h-3 bg-[var(--c-bg-subtle)] rounded" />
+        <div className="w-10 h-3 bg-[var(--c-bg-subtle)] rounded" />
+        <div className="w-20 h-3 bg-[var(--c-bg-subtle)] rounded ml-auto" />
       </div>
     </div>
   );
@@ -224,12 +224,12 @@ function PostCard({ post }: { post: RedditPost }) {
       href={post.permalink === '#' ? undefined : `https://reddit.com${post.permalink}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="block p-4 rounded-2xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--border-hover)] hover:bg-[var(--card-hover)] transition-all touch-manipulation active:scale-[0.98]"
+      className="block p-4 rounded-xl bg-[var(--c-bg-surface)] border-[0.5px] border-[var(--c-border)] hover:border-[var(--c-accent)]/30 hover:bg-[var(--c-bg-subtle)]/30 transition-all touch-manipulation active:scale-[0.98] shadow-sm"
       onClick={(e) => post.permalink === '#' && e.preventDefault()}
     >
       <div className="flex items-center gap-2 mb-2">
         <span
-          className="text-[10px] font-bold px-2 py-0.5 rounded-full border"
+          className="badge-text px-2 py-0.5 rounded-full border"
           style={{
             color: subColor,
             background: `${subColor}15`,
@@ -240,7 +240,7 @@ function PostCard({ post }: { post: RedditPost }) {
         </span>
         {/* Sentiment dot */}
         <span
-          className="text-[10px] font-bold px-2 py-0.5 rounded-full border flex items-center gap-1"
+          className="badge-text px-2 py-0.5 rounded-full border flex items-center gap-1"
           style={{
             color: sentiment.color,
             background: `${sentiment.color}12`,
@@ -249,21 +249,21 @@ function PostCard({ post }: { post: RedditPost }) {
         >
           {sentiment.emoji} {sentiment.label}
         </span>
-        <span className="text-[10px] text-[var(--muted)] ml-auto flex items-center gap-1">
+        <span className="meta-text text-[var(--c-text-tertiary)] ml-auto flex items-center gap-1">
           <Clock className="w-3 h-3" />
           {hoursAgo}h ago
         </span>
       </div>
-      <h3 className="text-sm font-semibold text-[var(--text)] leading-snug mb-3 line-clamp-3">
+      <h3 className="card-title text-[var(--c-text-primary)] leading-snug mb-3 line-clamp-3">
         {post.title}
       </h3>
-      <div className="flex items-center gap-4 text-xs text-[var(--muted)]">
-        <span className="flex items-center gap-1 font-bold text-[var(--accent)]">
+      <div className="flex items-center gap-4 meta-text text-[var(--c-text-secondary)]">
+        <span className="flex items-center gap-1 font-bold text-[var(--c-accent)]">
           <ArrowBigUp className="w-4 h-4" />
           {formatScore(post.score)}
         </span>
         <span className="flex items-center gap-1">💬 {post.num_comments}</span>
-        <span className="ml-auto truncate max-w-[100px] text-[var(--muted)]">
+        <span className="ml-auto truncate max-w-[100px] text-[var(--c-text-tertiary)]">
           u/{post.author}
         </span>
       </div>
@@ -341,15 +341,15 @@ export default function CommunityPage() {
       <div className="mb-8 relative">
         <div className="flex items-center justify-between gap-4 mb-4">
           <div
-            className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border text-[10px] font-bold uppercase tracking-widest transition-colors ${
+            className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border badge-text uppercase tracking-widest transition-colors ${
               isFallback
-                ? 'bg-[var(--warning)]/10 border-[var(--warning)]/20 text-[var(--warning)]'
-                : 'bg-[var(--accent-3)]/10 border-[var(--accent-3)]/20 text-[var(--accent-3)]'
+                ? 'bg-[var(--c-warning-bg)] border-[var(--c-warning-text)]/20 text-[var(--c-warning-text)]'
+                : 'bg-[var(--c-accent-subtle)] border-[var(--c-accent)]/20 text-[var(--c-accent)]'
             }`}
           >
             <span
               className={`w-1.5 h-1.5 rounded-full animate-pulse inline-block ${
-                isFallback ? 'bg-[var(--warning)]' : 'bg-[var(--accent-3)]'
+                isFallback ? 'bg-[var(--c-warning-text)]' : 'bg-[var(--c-accent)]'
               }`}
             />
             {isFallback ? "Editor's Picks" : 'Live from r/worldcup'}
@@ -357,21 +357,21 @@ export default function CommunityPage() {
           <button
             onClick={() => setRefreshKey((k) => k + 1)}
             disabled={loading}
-            className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[var(--card)] border border-[var(--border)] text-[10px] font-bold text-[var(--text)] hover:bg-[var(--card-hover)] transition-all disabled:opacity-50"
+            className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[var(--c-bg-surface)] border border-[var(--c-border)] badge-text text-[var(--c-text-primary)] hover:bg-[var(--c-bg-subtle)] transition-all disabled:opacity-50"
           >
             <RefreshCw className={`w-3 h-3 ${loading ? 'animate-spin' : ''}`} />
             Refresh
           </button>
         </div>
-        <h1 className="font-display text-4xl mb-2">
-          Fan <span className="text-[var(--accent-3)]">Pulse</span>
+        <h1 className="page-title mb-2 text-[var(--c-text-primary)]">
+          Fan <span className="text-[var(--c-accent)]">Pulse</span>
         </h1>
         <div className="flex items-center justify-between gap-4">
-          <p className="text-sm text-[var(--muted)]">
+          <p className="body-text text-[var(--c-text-secondary)]">
             Real talk from football&apos;s loudest corners of the internet.
           </p>
           {lastUpdated && !isFallback && (
-            <p className="text-[10px] text-[var(--muted)] font-mono">
+            <p className="meta-text text-[var(--c-text-tertiary)]">
               Updated: {new Date(lastUpdated).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
             </p>
           )}
@@ -380,15 +380,15 @@ export default function CommunityPage() {
 
       {/* ── TRENDING TOPICS ── */}
       {topics.length > 0 && (
-        <section className="mb-6">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--muted)] mb-2">
+        <section className="mb-8">
+          <p className="badge-text uppercase text-[var(--c-text-tertiary)] mb-3">
             🔥 Trending now
           </p>
           <div className="flex flex-wrap gap-2">
             {topics.map((topic, i) => (
               <span
                 key={topic}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold bg-[var(--card)] border border-[var(--border)] text-[var(--text-2)] hover:border-[var(--border-hover)] transition-colors cursor-default"
+                className="flex items-center gap-2 px-3.5 py-2 rounded-xl badge-text bg-[var(--c-bg-surface)] border-[0.5px] border-[var(--c-border)] text-[var(--c-text-secondary)] hover:border-[var(--c-accent)]/30 transition-colors cursor-default shadow-sm"
               >
                 {TOPIC_EMOJIS[i % TOPIC_EMOJIS.length]} {topic}
               </span>
@@ -398,12 +398,12 @@ export default function CommunityPage() {
       )}
 
       {/* ── SENTIMENT FILTERS ── */}
-      <div className="flex items-center gap-3 mb-5 p-3 rounded-xl bg-[var(--card)] border border-[var(--border)]">
-        <span className="text-[10px] text-[var(--muted)] font-bold uppercase tracking-wider">
+      <div className="flex items-center gap-3 mb-5 p-3 rounded-xl bg-[var(--c-bg-surface)] border-[0.5px] border-[var(--c-border)] shadow-sm">
+        <span className="badge-text text-[var(--c-text-tertiary)] uppercase tracking-wider">
           Filter:
         </span>
         {[
-          { label: 'All', emoji: '🌐', color: 'var(--text)' },
+          { label: 'All', emoji: '🌐', color: 'var(--c-text-primary)' },
           { emoji: '🟢', label: 'Hype', color: '#00e5a0' },
           { emoji: '🟡', label: 'Debate', color: '#ffd700' },
           { emoji: '🔴', label: 'Drama', color: '#ff4d6d' },
@@ -411,10 +411,10 @@ export default function CommunityPage() {
           <button
             key={s.label}
             onClick={() => setActiveSentiment(s.label as any)}
-            className={`flex items-center gap-1 text-[10px] font-semibold px-2 py-1 rounded-md transition-all ${
+            className={`flex items-center gap-1 badge-text px-2 py-1 rounded-md transition-all ${
               activeSentiment === s.label
-                ? 'bg-[var(--border)] ring-1 ring-[var(--border-hover)]'
-                : 'hover:bg-[var(--card-hover)]'
+                ? 'bg-[var(--c-bg-subtle)] ring-1 ring-[var(--c-border)]'
+                : 'hover:bg-[var(--c-bg-subtle)]/50'
             }`}
             style={{ color: s.color }}
           >
@@ -426,20 +426,20 @@ export default function CommunityPage() {
       {/* ── SUBREDDIT FILTERS ── */}
       <div className="flex gap-2 overflow-x-auto pb-2 mb-6 no-scrollbar">
         {SUBREDDITS.map((sub) => {
-          const col = SUB_COLORS[sub] ?? 'var(--text)';
+          const col = SUB_COLORS[sub] ?? 'var(--c-text-primary)';
           const isActive = activeSub === sub;
           return (
             <button
               key={sub}
               onClick={() => setActiveSub(sub)}
-              className="px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all touch-manipulation active:scale-95 border"
+              className="px-3 py-1.5 rounded-full badge-text whitespace-nowrap transition-all touch-manipulation active:scale-95 border"
               style={
                 isActive
-                  ? { color: '#fff', background: col, borderColor: col }
+                  ? { color: 'var(--c-accent-text)', background: col, borderColor: col }
                   : {
-                      color: 'var(--muted)',
-                      background: 'var(--card)',
-                      borderColor: 'var(--border)',
+                      color: 'var(--c-text-tertiary)',
+                      background: 'var(--c-bg-surface)',
+                      borderColor: 'var(--c-border)',
                     }
               }
             >
@@ -459,8 +459,8 @@ export default function CommunityPage() {
         ) : filtered.length > 0 ? (
           filtered.map((post) => <PostCard key={post.id} post={post} />)
         ) : (
-          <div className="text-center py-12 text-[var(--muted)] bg-[var(--card)] rounded-xl border border-[var(--border)]">
-            <p className="text-sm">No recent posts matching your filters.</p>
+          <div className="text-center py-16 bg-[var(--c-bg-surface)] rounded-xl border-[0.5px] border-[var(--c-border)] shadow-sm">
+            <p className="body-text text-[var(--c-text-tertiary)]">No recent posts matching your filters.</p>
           </div>
         )}
       </div>

@@ -82,17 +82,17 @@ export function PlayerModal({
           animate={{ y: 0 }}
           exit={{ y: '100%' }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-lg bg-[var(--card)] rounded-t-[32px] sm:rounded-3xl pointer-events-auto flex flex-col max-h-[90vh] overflow-hidden border border-[var(--border)] shadow-2xl"
+          className="relative w-full max-w-lg bg-[var(--c-bg-surface)] rounded-t-xl sm:rounded-xl pointer-events-auto flex flex-col max-h-[90vh] overflow-hidden border border-[var(--c-border)] shadow-2xl"
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-[var(--border)]">
-            <h3 className="font-display font-bold text-lg flex items-center gap-2 text-[var(--text)]">
-              <Activity className="w-5 h-5 text-[var(--accent)]" />
+          <div className="flex items-center justify-between p-4 border-b border-[var(--c-border)] bg-[var(--c-bg-subtle)]">
+            <h3 className="card-title flex items-center gap-2 text-[var(--c-text-primary)]">
+              <Activity className="w-5 h-5 text-[var(--c-accent)]" />
               Scouting Report
             </h3>
             <button
               onClick={onClose}
-              className="p-2 rounded-full bg-[var(--bg-2)] hover:bg-[var(--border)] text-[var(--muted)] hover:text-[var(--text)] transition-colors"
+              className="p-2 rounded-full bg-[var(--c-bg-surface)] hover:bg-[var(--c-bg-subtle)] text-[var(--c-text-tertiary)] hover:text-[var(--c-text-primary)] transition-colors border border-[var(--c-border)]"
             >
               <X className="w-5 h-5" />
             </button>
@@ -102,7 +102,7 @@ export function PlayerModal({
           <div className="overflow-y-auto p-6 min-h-[300px]">
             {/* Player Identity Row */}
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-20 h-20 rounded-full bg-[var(--bg-2)] overflow-hidden shrink-0 border-2 border-[var(--border)] relative shadow-md">
+              <div className="w-20 h-20 rounded-full bg-[var(--c-bg-subtle)] overflow-hidden shrink-0 border-2 border-[var(--c-border)] relative shadow-md">
                 {player.strCutout ? (
                   <img
                     src={player.strCutout}
@@ -110,21 +110,21 @@ export function PlayerModal({
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-[var(--muted)]">
+                  <div className="w-full h-full flex items-center justify-center text-[var(--c-text-tertiary)]">
                     <User className="w-10 h-10" />
                   </div>
                 )}
               </div>
               <div>
-                <h2 className="font-display text-2xl font-bold leading-tight mb-1">
+                <h2 className="section-title text-[var(--c-text-primary)] mb-1">
                   {player.strPlayer}
                 </h2>
                 <div className="flex items-center gap-2">
-                  <span className="px-2 py-1 bg-[var(--bg-2)] text-[var(--text-2)] text-xs font-bold rounded uppercase tracking-wide">
+                  <span className="badge-text px-2 py-1 bg-[var(--c-bg-subtle)] text-[var(--c-accent)] rounded border border-[var(--c-border)] uppercase tracking-wide">
                     {player.strPosition}
                   </span>
                   {player.strNumber && (
-                    <span className="text-sm font-medium text-[var(--muted)]">
+                    <span className="meta-text text-[var(--c-text-tertiary)]">
                       #{player.strNumber}
                     </span>
                   )}
@@ -155,22 +155,22 @@ export function PlayerModal({
               >
                 {/* Stats Row */}
                 <div className="flex gap-3">
-                  <div className="flex-1 p-4 rounded-2xl bg-[var(--bg-2)] border border-[var(--border)] flex flex-col items-center justify-center text-center">
-                    <span className="text-xs font-semibold text-[var(--muted)] uppercase tracking-wider mb-1">
+                  <div className="flex-1 p-4 rounded-xl bg-[var(--c-bg-subtle)] border border-[var(--c-border)] flex flex-col items-center justify-center text-center">
+                    <span className="badge-text text-[var(--c-text-tertiary)] uppercase tracking-wider mb-1">
                       AI Rating
                     </span>
-                    <div className="font-display text-3xl font-bold text-[var(--accent)] flex items-end gap-1">
+                    <div className="score-text text-[var(--c-accent)] flex items-end gap-1">
                       {profile.rating}{' '}
-                      <span className="text-sm text-[var(--muted)] font-normal mb-1">
+                      <span className="badge-text text-[var(--c-text-tertiary)] font-normal mb-1 normal-case">
                         /100
                       </span>
                     </div>
                   </div>
-                  <div className="flex-[2] p-4 rounded-2xl bg-[var(--bg-2)] border border-[var(--border)] flex flex-col justify-center">
-                    <span className="text-xs font-semibold text-[var(--muted)] uppercase tracking-wider mb-1">
+                  <div className="flex-[2] p-4 rounded-xl bg-[var(--c-bg-subtle)] border border-[var(--c-border)] flex flex-col justify-center">
+                    <span className="badge-text text-[var(--c-text-tertiary)] uppercase tracking-wider mb-1">
                       Playstyle
                     </span>
-                    <span className="font-display text-lg font-bold text-[var(--text)] leading-tight">
+                    <span className="card-title text-[var(--c-text-primary)] leading-tight">
                       {profile.playstyle}
                     </span>
                   </div>

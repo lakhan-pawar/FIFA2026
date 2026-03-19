@@ -31,44 +31,44 @@ function GroupCard({
 
   return (
     <div
-      className={`rounded-2xl border overflow-hidden shadow-sm transition-all hover:shadow-md ${
+      className={`rounded-xl border-[0.5px] overflow-hidden shadow-sm transition-all hover:shadow-md ${
         isFavGroup
-          ? 'border-[var(--accent)]/40 shadow-[0_0_20px_rgba(var(--team-primary-rgb),0.1)]'
+          ? 'border-[var(--c-accent)]/40 shadow-sm'
           : isCanadaGroup
-            ? 'border-[#cc0000]/40 shadow-[0_0_20px_rgba(204,0,0,0.08)]'
-            : 'border-[var(--border)] hover:border-[var(--border-hover)]'
-      } bg-[var(--card)]`}
+            ? 'border-red-500/40 shadow-sm'
+            : 'border-[var(--c-border)]'
+      } bg-[var(--c-bg-surface)]`}
       style={{ animationDelay: `${delay}ms` }}
     >
       {/* Header */}
       <div
         className={`px-4 py-3 border-b flex justify-between items-center ${
           isFavGroup
-            ? 'border-[var(--accent)]/20 bg-[var(--accent)]/5'
+            ? 'border-[var(--c-accent)]/20 bg-[var(--c-accent-subtle)]'
             : isCanadaGroup
-              ? 'border-[#cc0000]/20 bg-[#cc0000]/5'
-              : 'border-[var(--border)] bg-[var(--bg-2)]'
+              ? 'border-red-500/20 bg-red-500/5'
+              : 'border-[var(--c-border)] bg-[var(--c-bg-subtle)]'
         }`}
       >
         <div className="flex items-center gap-2">
           {isFavGroup ? (
-            <Star className="w-3.5 h-3.5 text-[var(--accent)] fill-[var(--accent)]" />
+            <Star className="w-3.5 h-3.5 text-[var(--c-accent)] fill-[var(--c-accent)]" />
           ) : isCanadaGroup ? (
             <span className="text-base">🍁</span>
           ) : null}
           <h3
-            className={`font-display text-lg ${isFavGroup ? 'text-[var(--accent)]' : isCanadaGroup ? 'text-[#ff4d6d]' : ''}`}
+            className={`card-title ${isFavGroup ? 'text-[var(--c-accent)]' : isCanadaGroup ? 'text-red-500' : 'text-[var(--c-text-primary)]'}`}
           >
             Group {groupLetter}
           </h3>
           {isFavGroup && (
-            <span className="text-[9px] font-bold uppercase tracking-widest text-[var(--accent)] bg-[var(--accent)]/10 px-2 py-0.5 rounded-full border border-[var(--accent)]/20">
-              Your Team&apos;s Group
+            <span className="badge-text uppercase tracking-widest text-[var(--c-accent)] bg-[var(--c-accent-subtle)] px-2 py-0.5 rounded-full border border-[var(--c-accent)]/20">
+              Selected
             </span>
           )}
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[9px] font-mono text-[var(--muted)]">
+          <span className="meta-text text-[var(--c-text-tertiary)]">
             {filled}/{TOTAL_PER_GROUP}
           </span>
         </div>
@@ -98,18 +98,18 @@ function GroupCard({
             <Link
               href={`/teams/${team.id}`}
               key={team.id}
-              className={`flex items-center gap-3 px-4 py-3 hover:bg-[var(--bg-2)] transition-colors group cursor-pointer ${
+              className={`flex items-center gap-3 px-4 py-3 hover:bg-[var(--c-bg-subtle)] transition-colors group cursor-pointer ${
                 isUserFavorite
-                  ? 'bg-[var(--accent)]/5'
+                  ? 'bg-[var(--c-accent-subtle)]'
                   : isCanada
-                    ? 'bg-[#cc0000]/5'
+                    ? 'bg-red-500/5'
                     : ''
               }`}
             >
-              <span className="text-xs font-bold text-[var(--muted)] w-4 italic">
+              <span className="badge-text text-[var(--c-text-tertiary)] w-4 italic">
                 {idx + 1}
               </span>
-              <div className="w-7 h-7 rounded-full overflow-hidden border border-[var(--border)] shrink-0">
+              <div className="w-7 h-7 rounded-full overflow-hidden border border-[var(--c-border)] shrink-0 shadow-sm">
                 <img
                   src={`https://flagcdn.com/w80/${team.flagCode}.png`}
                   alt={team.name}
@@ -117,28 +117,23 @@ function GroupCard({
                 />
               </div>
               <span
-                className={`flex-1 font-semibold text-sm transition-colors ${
+                className={`flex-1 font-semibold text-[13px] transition-colors ${
                   isUserFavorite
-                    ? 'text-[var(--accent)] group-hover:text-[var(--accent)]'
+                    ? 'text-[var(--c-accent)] group-hover:text-[var(--c-accent)]'
                     : isCanada
-                      ? 'text-[#ff4d6d] group-hover:text-[#ff6b85]'
-                      : 'group-hover:text-[var(--accent)]'
+                      ? 'text-red-600 group-hover:text-red-500'
+                      : 'text-[var(--c-text-primary)] group-hover:text-[var(--c-accent)]'
                 }`}
               >
                 {isCanada ? '🍁 Canada' : team.name}
-                {isUserFavorite && (
-                  <span className="ml-2 text-[10px] opacity-70">
-                    (Selected)
-                  </span>
-                )}
               </span>
-              <div className="flex gap-3 text-[10px] font-mono text-[var(--muted)]">
+              <div className="flex gap-3 meta-text text-[var(--c-text-tertiary)]">
                 <span>P:0</span>
                 <span>W:0</span>
                 <span>L:0</span>
-                <span className="font-bold text-[var(--text-2)]">0pts</span>
+                <span className="font-bold text-[var(--c-text-primary)]">0pts</span>
               </div>
-              <span className="text-[var(--border)] group-hover:text-[var(--accent)] text-sm transition-colors">
+              <span className="text-[var(--c-border)] group-hover:text-[var(--c-accent)] text-sm transition-colors">
                 ›
               </span>
             </Link>
@@ -209,56 +204,51 @@ export default function StandingsPage() {
     <div className="w-full max-w-[1100px] mx-auto px-4 py-8 pb-24">
       {/* ── HEADER ── */}
       <div className="mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--accent-3)]/10 border border-[var(--accent-3)]/20 text-[10px] font-bold text-[var(--accent-3)] uppercase tracking-widest mb-4">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--c-accent-subtle)] border border-[var(--c-accent)]/20 badge-text text-[var(--c-accent)] uppercase tracking-widest mb-4">
           FIFA World Cup 2026
         </div>
-        <h1 className="font-display text-4xl mb-2">
-          The 48 <span className="text-[var(--accent-3)]">Groups</span>
+        <h1 className="page-title mb-2">
+          The 12 <span className="text-[var(--c-accent)]">Groups</span>
         </h1>
-        <p className="text-sm text-[var(--muted)]">
-          The road to glory. 12 groups, 4 teams each. Top 2 + 8 best
+        <p className="body-text text-[var(--c-text-secondary)]">
+          The road to glory. 12 groups, 48 teams. Top 2 + 8 best
           third-placed teams advance.
         </p>
       </div>
 
       {/* ── SPOTLIGHT ── */}
       <div
-        className={`mb-8 p-5 rounded-2xl bg-gradient-to-br border relative overflow-hidden ${
+        className={`mb-8 p-5 rounded-xl bg-[var(--c-bg-surface)] border-[0.5px] relative overflow-hidden shadow-sm ${
           isFavSpotlight
-            ? 'from-[var(--accent)]/15 via-[var(--card)] to-[var(--bg-2)] border-[var(--accent)]/30'
-            : 'from-[#cc0000]/15 via-[var(--card)] to-[var(--bg-2)] border-[#cc0000]/30'
+            ? 'border-[var(--c-accent)]/30'
+            : 'border-red-500/30'
         }`}
       >
-        <div
-          className={`absolute -top-10 -right-10 w-40 h-40 blur-3xl rounded-full pointer-events-none ${
-            isFavSpotlight ? 'bg-[var(--accent)]/8' : 'bg-[#cc0000]/8'
-          }`}
-        />
         <div className="relative z-10 flex items-start gap-4">
           <div
             className={`w-14 h-14 rounded-xl border flex items-center justify-center text-3xl shrink-0 ${
               isFavSpotlight
-                ? 'bg-[var(--accent)]/20 border-[var(--accent)]/30'
-                : 'bg-[#cc0000]/20 border-[#cc0000]/30'
+                ? 'bg-[var(--c-accent-subtle)] border-[var(--c-accent)]/20'
+                : 'bg-red-500/10 border-red-500/20'
             }`}
           >
             {isFavSpotlight ? favTeam?.flag : '🍁'}
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1 flex-wrap">
-              <h2 className="font-display text-xl text-[var(--text)]">
+              <h2 className="section-title text-[var(--c-text-primary)]">
                 {isFavSpotlight
                   ? `${favTeam?.name}'s Journey`
                   : "Canada's Path to Glory"}
               </h2>
             </div>
-            <p className="text-xs text-[var(--muted)] mb-3">
+            <p className="body-text text-[var(--c-text-secondary)] mb-3">
               {isFavSpotlight
                 ? `${favTeam?.name} will compete in `
                 : 'Canada drew '}
               <strong
                 className={
-                  isFavSpotlight ? 'text-[var(--accent)]' : 'text-[#ff4d6d]'
+                  isFavSpotlight ? 'text-[var(--c-accent)]' : 'text-red-500'
                 }
               >
                 Group {spotlightGroup}
@@ -272,12 +262,12 @@ export default function StandingsPage() {
                 <Link
                   href={`/teams/${t.id}`}
                   key={t.id}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[var(--bg-2)] border border-[var(--border)] transition-colors text-xs font-semibold ${
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[var(--c-bg-subtle)] border border-[var(--c-border)] transition-colors text-[11px] font-semibold ${
                     t.name === favTeam?.name
-                      ? 'border-[var(--accent)]/40 text-[var(--accent)]'
+                      ? 'border-[var(--c-accent)]/40 text-[var(--c-accent)]'
                       : t.name === 'Canada'
-                        ? 'border-[#ff4d6d]/40 text-[#ff4d6d]'
-                        : 'hover:border-[var(--accent)]/20 shadow-sm'
+                        ? 'border-red-500/40 text-red-500'
+                        : 'text-[var(--c-text-secondary)] hover:border-[var(--c-accent)]/20 shadow-sm'
                   }`}
                 >
                   <img
@@ -291,49 +281,38 @@ export default function StandingsPage() {
                   )}
                 </Link>
               ))}
-              {Array.from({
-                length:
-                  TOTAL_PER_GROUP - getTeamsInGroup(spotlightGroup).length,
-              }).map((_, i) => (
-                <span
-                  key={i}
-                  className="px-3 py-1.5 rounded-full bg-[var(--bg-2)] border border-[var(--border)] text-xs text-[var(--muted)] italic"
-                >
-                  TBD
-                </span>
-              ))}
             </div>
           </div>
         </div>
       </div>
 
       {/* ── INFO BANNER ── */}
-      <div className="flex items-start gap-4 p-4 rounded-2xl bg-[var(--accent-3)]/8 border border-[var(--accent-3)]/20 mb-8">
-        <div className="p-2 rounded-xl bg-[var(--accent-3)]/15 text-[var(--accent-3)] shrink-0">
+      <div className="flex items-start gap-4 p-4 rounded-xl bg-[var(--c-accent-subtle)] border border-[var(--c-accent)]/20 mb-8">
+        <div className="p-2 rounded-lg bg-[var(--c-accent)]/10 text-[var(--c-accent)] shrink-0">
           <Info className="w-4 h-4" />
         </div>
         <div>
-          <h4 className="text-sm font-bold text-[var(--text)] mb-0.5">
+          <h4 className="card-title text-[var(--c-text-primary)] mb-0.5">
             Expanded 48-Team Format
           </h4>
-          <p className="text-xs text-[var(--muted)] leading-relaxed">
+          <p className="body-text text-[var(--c-text-secondary)] leading-relaxed">
             FIFA WC 2026 features{' '}
-            <strong className="text-[var(--text)]">12 groups of 4</strong>. Top
+            <strong className="text-[var(--c-text-primary)]">12 groups of 4</strong>. Top
             2 from each + 8 best 3rd-placed teams advance to the{' '}
-            <strong className="text-[var(--text)]">Round of 32</strong>.
+            <strong className="text-[var(--c-text-primary)]">Round of 32</strong>.
           </p>
         </div>
       </div>
 
       {/* ── SEARCH ── */}
       <div className="relative mb-8">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted)]" />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--c-text-tertiary)]" />
         <input
           type="text"
           placeholder="Search team or group (e.g. 'Brazil', 'Group C')…"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full h-11 pl-11 pr-4 rounded-2xl bg-[var(--card)] border border-[var(--border)] focus:border-[var(--accent-3)] focus:outline-none transition-all text-sm text-[var(--text)] placeholder:text-[var(--muted)]"
+          className="w-full h-11 pl-11 pr-4 rounded-xl bg-[var(--c-bg-surface)] border border-[var(--c-border)] focus:border-[var(--c-accent)] focus:outline-none transition-all text-sm text-[var(--c-text-primary)] placeholder:text-[var(--c-text-tertiary)] shadow-sm"
         />
       </div>
 

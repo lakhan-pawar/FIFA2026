@@ -124,18 +124,16 @@ export default function Home() {
       />
 
       {/* ── HERO ── */}
-      <section className="relative min-h-[70vh] md:min-h-[85vh] flex flex-col items-center justify-center text-center px-4 pt-12 pb-12 md:pt-20 overflow-hidden">
+      <section className="relative min-h-[70vh] md:min-h-[85vh] flex flex-col items-center justify-center text-center px-4 pt-12 pb-12 md:pt-20 overflow-hidden bg-[var(--c-bg-base)]">
         {/* background glows - Team Immersive Light Leaks */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] sm:w-[800px] h-[400px] sm:h-[600px] bg-[var(--accent)]/20 blur-[120px] sm:blur-[160px] rounded-full opacity-60" />
-          <div className="absolute top-1/4 -left-10 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-[var(--accent-2)]/10 blur-[100px] sm:blur-[140px] rounded-full opacity-40" />
-          <div className="absolute bottom-1/4 -right-10 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-[var(--accent-3)]/10 blur-[100px] sm:blur-[140px] rounded-full opacity-30" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] sm:w-[800px] h-[400px] sm:h-[600px] bg-[var(--c-accent)]/10 blur-[120px] rounded-full opacity-60" />
         </div>
 
         {/* Pre-headline badge */}
-        <div className="relative z-10 mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] sm:text-xs font-bold text-[var(--muted)] uppercase tracking-[0.2em] backdrop-blur-md shadow-[0_0_20px_rgba(var(--team-primary-rgb),0.1)]">
+        <div className="relative z-10 mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--c-bg-surface)] border border-[var(--c-border)] text-[12px] font-medium text-[var(--c-text-tertiary)] uppercase tracking-[0.2em] shadow-sm">
           <LivePulseRing
-            color="var(--accent)"
+            color="var(--c-accent)"
             size={7}
             label={
               team
@@ -147,22 +145,15 @@ export default function Home() {
         </div>
 
         {/* Main headline */}
-        <h1 className="relative z-10 font-display tracking-tighter mb-4 leading-[0.85] sm:leading-none">
-          <span className="block text-[clamp(2.5rem,15vw,7.5rem)] text-transparent bg-clip-text bg-gradient-to-br from-[var(--text)] via-[var(--text)] to-[var(--text-2)]">
-            THE
-          </span>
-          <span className="block text-[clamp(2.5rem,15vw,7.5rem)] text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent)] via-[var(--accent)] to-[var(--accent-2)] drop-shadow-[0_0_80px_rgba(var(--team-primary-rgb),0.4)]">
-            BEAUTIFUL
-          </span>
-          <span className="block text-[clamp(2.5rem,15vw,7.5rem)] text-transparent bg-clip-text bg-gradient-to-br from-[var(--text)] via-[var(--text)] to-[var(--text-2)]">
-            GAME
-          </span>
+        <h1 className="relative z-10 hero-title mb-4 tracking-tighter text-[var(--c-text-primary)]">
+          <span className="block opacity-90">BATTLE FOR THE</span>
+          <span className="hero-gradient-text block">BEAUTIFUL GAME</span>
         </h1>
 
-        <p className="relative z-10 text-[var(--muted)] text-sm sm:text-lg max-w-[280px] sm:max-w-md mt-2 mb-8 sm:mb-12 leading-relaxed">
+        <p className="relative z-10 text-[18px] text-[var(--c-text-secondary)] font-medium max-w-2xl mb-10 leading-relaxed px-4">
           {team
-            ? `Track ${team.name}'s journey to the finals with AI-powered tactical depth.`
-            : 'AI-powered football intelligence for WC 2026. Zero sign-ups. Pure data, pure passion.'}
+            ? `Track ${team.name}'s journey to the finals with AI-powered tactical depth and real-time insights.`
+            : 'Experience the first 48-team World Cup with AI-powered tactical insights, real-time pulse, and your elite scouting inner circle.'}
         </p>
 
         {/* Countdown */}
@@ -176,43 +167,42 @@ export default function Home() {
             ].map((seg, i) => (
               <div
                 key={i}
-                className="flex flex-col items-center justify-center bg-[var(--card)] border border-[var(--border)] rounded-xl sm:rounded-2xl py-3 sm:py-4 px-1 backdrop-blur-sm shadow-sm"
+                className="flex flex-col items-center justify-center bg-[var(--c-bg-surface)] border border-[var(--c-border)] rounded-lg py-3 sm:py-4 px-1 shadow-sm"
               >
                 <span
-                  className={`font-display text-2xl sm:text-4xl font-bold tabular-nums leading-none ${i === 3 ? 'text-[var(--accent)]' : 'text-[var(--text)]'}`}
+                  className={`score-text tabular-nums leading-none ${i === 3 ? 'text-[var(--c-accent)]' : 'text-[var(--c-text-primary)]'}`}
                 >
                   {seg.v}
                 </span>
-                <span className="text-[9px] sm:text-[10px] text-[var(--muted)] uppercase tracking-widest mt-1">
+                <span className="badge-text text-[var(--c-text-tertiary)] uppercase tracking-widest mt-1">
                   {seg.l}
                 </span>
               </div>
             ))}
-            <div className="col-span-4 text-center text-[9px] text-[var(--muted)] uppercase tracking-[0.2em] mt-1 opacity-60">
+            <div className="col-span-4 text-center text-[11px] text-[var(--c-text-tertiary)] font-medium uppercase tracking-[0.2em] mt-1 opacity-60">
               Until June 11, 2026 · Estadio Azteca
             </div>
           </div>
         )}
 
         {/* CTAs */}
-        <div className="relative z-10 flex flex-col sm:flex-row gap-3 w-full sm:w-auto max-w-[260px] sm:max-w-none">
-          <Link
-            href="/brackets"
-            className="h-11 sm:h-12 px-8 flex items-center justify-center rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] text-black font-bold text-sm shadow-[0_0_30px_rgba(0,229,160,0.3)] hover:shadow-[0_0_50px_rgba(0,229,160,0.45)] hover:scale-105 transition-all active:scale-95 touch-manipulation"
-          >
-            🏆 Predict Bracket
-          </Link>
+        <div className="relative z-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
           <Link
             href="/agents"
-            className="h-11 sm:h-12 px-8 flex items-center justify-center rounded-full bg-[var(--card)] border border-[var(--border)] text-[var(--text)] font-semibold text-sm hover:bg-[var(--card-hover)] hover:border-[var(--border-hover)] transition-all active:scale-95 touch-manipulation"
+            className="px-7 py-3 bg-[var(--c-accent)] text-[var(--c-accent-text)] rounded-lg text-[15px] font-semibold hover:opacity-90 transition-all shadow-lg active:scale-95 flex items-center justify-center"
           >
-            🤖 Chat with AI
+            Meet Your AI Elite
           </Link>
-
+          <Link
+            href="/schedule"
+            className="px-7 py-3 bg-transparent border-[1.5px] border-[var(--c-accent)] text-[var(--c-accent)] rounded-lg text-[15px] font-semibold hover:bg-[var(--c-accent)]/5 transition-all shadow-sm active:scale-95 flex items-center justify-center"
+          >
+            Explore KickoffTo
+          </Link>
           {/* Goal Demo Trigger */}
           <button
             onClick={triggerGoalDemo}
-            className="h-11 sm:h-12 px-6 flex items-center justify-center rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/30 text-[var(--accent)] font-bold text-xs hover:bg-[var(--accent)]/20 hover:scale-105 transition-all shadow-sm active:scale-95"
+            className="px-4 py-3 bg-[var(--c-accent-subtle)] border border-[var(--c-accent-subtle)] text-[var(--c-accent-subtle-text)] rounded-lg text-[11px] font-bold hover:opacity-80 transition-all shadow-sm active:scale-95"
             title="Trigger goal celebration demo"
           >
             ⚽ GOAL!
@@ -231,16 +221,16 @@ export default function Home() {
             {pulseStats.map((s) => (
               <div
                 key={s.label}
-                className="shrink-0 flex flex-col items-center justify-center bg-[var(--card)] border border-[var(--border)] rounded-2xl px-5 py-3.5 min-w-[110px] sm:min-w-[120px] hover:border-[var(--border-hover)] transition-all cursor-default shadow-sm"
+                className="shrink-0 flex flex-col items-center justify-center bg-[var(--c-bg-surface)] border border-[var(--c-border)] rounded-xl px-5 py-3.5 min-w-[110px] sm:min-w-[120px] hover:border-[var(--c-border-strong)] transition-all cursor-default shadow-sm"
               >
                 <span className="text-xl sm:text-2xl mb-1">{s.icon}</span>
                 <span
-                  className="font-display text-2xl sm:text-3xl font-bold"
+                  className="font-semibold text-2xl sm:text-3xl"
                   style={{ color: s.color }}
                 >
                   {s.value}
                 </span>
-                <span className="text-[9px] sm:text-[10px] text-[var(--muted)] uppercase tracking-widest mt-0.5">
+                <span className="badge-text text-[var(--c-text-tertiary)] uppercase tracking-widest mt-0.5">
                   {s.label}
                 </span>
               </div>
@@ -280,35 +270,35 @@ export default function Home() {
           featuredAgent && (
             <Link
               href={`/agents/${featuredAgent.id}`}
-              className="relative flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 p-5 sm:p-7 rounded-[28px] bg-gradient-to-br from-[var(--card)] to-[var(--bg-2)] border border-[var(--border)] hover:border-[var(--accent)]/30 transition-all group overflow-hidden block shadow-sm animate-in slide-in-from-bottom-4 duration-700"
+              className="relative flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6 p-5 sm:p-7 rounded-xl bg-[var(--c-bg-surface)] border-[0.5px] border-[var(--c-border)] hover:border-[var(--c-accent)]/30 transition-all group overflow-hidden block shadow-sm animate-in slide-in-from-bottom-4 duration-700"
               key={featuredAgent.id}
             >
               {/* glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/5 to-[var(--accent-2)]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--c-accent)]/5 to-[var(--c-accent)]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
 
-              <div className="shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent-2)]/20 border border-[var(--border)] flex items-center justify-center text-5xl shadow-lg relative z-10 transition-transform group-hover:scale-110">
+              <div className="shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-lg bg-[var(--c-bg-subtle)] border border-[var(--c-border)] flex items-center justify-center text-5xl relative z-10 transition-transform group-hover:scale-110">
                 {featuredAgent.avatar}
               </div>
 
               <div className="flex-1 min-w-0 relative z-10">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
-                  <span className="inline-block self-center sm:self-start text-[9px] font-bold uppercase tracking-widest text-[var(--accent)] bg-[var(--accent)]/10 px-2 py-0.5 rounded-full">
+                  <span className="inline-block self-center sm:self-start badge-text uppercase tracking-widest text-[var(--c-accent)] bg-[var(--c-accent-subtle)] px-2 py-0.5 rounded-full">
                     Featured Agent
                   </span>
-                  <span className="hidden sm:inline w-1 h-1 rounded-full bg-[var(--border)]" />
-                  <span className="text-[11px] text-[var(--accent-2)] font-bold uppercase tracking-widest">
+                  <span className="hidden sm:inline w-1 h-1 rounded-full bg-[var(--c-border)]" />
+                  <span className="badge-text text-[var(--c-accent)] uppercase tracking-widest">
                     {featuredAgent.role}
                   </span>
                 </div>
 
-                <h3 className="font-display text-2xl text-[var(--text)] mb-2">
+                <h3 className="section-title text-[var(--c-text-primary)] mb-2">
                   {featuredAgent.name}
                 </h3>
-                <p className="text-sm text-[var(--text-2)] leading-relaxed max-w-md mx-auto sm:mx-0">
+                <p className="body-text text-[var(--c-text-secondary)] leading-relaxed max-w-md mx-auto sm:mx-0">
                   {featuredAgent.description}
                 </p>
               </div>
-              <div className="hidden sm:flex shrink-0 self-center w-10 h-10 items-center justify-center rounded-full bg-[var(--bg-2)] border border-[var(--border)] text-[var(--muted)] group-hover:text-[var(--accent)] group-hover:border-[var(--accent)]/30 group-hover:translate-x-1 transition-all relative z-10 shadow-inner">
+              <div className="hidden sm:flex shrink-0 self-center w-10 h-10 items-center justify-center rounded-full bg-[var(--c-bg-subtle)] border border-[var(--c-border)] text-[var(--c-text-tertiary)] group-hover:text-[var(--c-accent)] group-hover:border-[var(--c-accent)]/30 group-hover:translate-x-1 transition-all relative z-10">
                 →
               </div>
             </Link>
@@ -381,20 +371,20 @@ export default function Home() {
             <Link
               key={item.href}
               href={item.href}
-              className="group p-4 sm:p-5 rounded-[22px] bg-[var(--card)] border border-[var(--border)] hover:border-[var(--accent)]/30 hover:bg-[var(--card-hover)] transition-all touch-manipulation active:scale-[0.97] shadow-sm"
+              className="group p-4 sm:p-5 rounded-xl bg-[var(--c-bg-surface)] border-[0.5px] border-[var(--c-border)] hover:border-[var(--c-accent)]/30 hover:bg-[var(--c-bg-subtle)] transition-all touch-manipulation active:scale-[0.97] shadow-sm"
             >
               <div className="flex items-center justify-between mb-3">
                 <span className="text-3xl filter drop-shadow-sm">
                   {item.emoji}
                 </span>
-                <div className="hidden sm:block opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all text-[var(--accent)] text-xs">
+                <div className="hidden sm:block opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all text-[var(--c-accent)] text-xs">
                   →
                 </div>
               </div>
-              <span className="block font-display text-sm sm:text-base text-[var(--text)] group-hover:text-[var(--accent)] transition-colors leading-tight">
+              <span className="block card-title text-[var(--c-text-primary)] group-hover:text-[var(--c-accent)] transition-colors leading-tight">
                 {item.label}
               </span>
-              <span className="block text-[10px] text-[var(--muted)] mt-1 tracking-wide">
+              <span className="block meta-text text-[var(--c-text-tertiary)] mt-1 tracking-wide">
                 {item.sub}
               </span>
             </Link>

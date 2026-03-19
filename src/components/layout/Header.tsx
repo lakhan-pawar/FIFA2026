@@ -59,16 +59,14 @@ export function Header() {
   return (
     <header
       className={cn(
-        'sticky top-[28px] z-50 transition-all duration-300 w-full h-[58px] md:h-[58px] h-[52px] rounded-full px-6',
-        scrolled || team
-          ? 'glass-team shadow-[0_0_40px_rgba(var(--team-primary-rgb),0.25)]'
-          : 'bg-transparent border-transparent'
+        'sticky top-[28px] z-50 transition-all duration-300 w-full h-[58px] border-b border-[var(--c-border)] bg-[var(--c-bg-surface)]',
+        scrolled && 'shadow-sm'
       )}
     >
       <div className="max-w-[1400px] mx-auto px-4 h-full flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-1.5 touch-manipulation">
-          <span className="font-display text-2xl tracking-wide bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent dark:from-white dark:to-gray-500">
+          <span className="font-display text-2xl tracking-tight text-[var(--c-text-primary)]">
             KickoffTo
           </span>
           {team && (
@@ -87,10 +85,10 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'relative h-full px-4 flex items-center gap-2 text-sm font-medium transition-colors',
+                  'relative h-full px-4 flex items-center gap-2 text-[13px] transition-colors',
                   isActive
-                    ? 'text-[var(--text)]'
-                    : 'text-[var(--muted)] hover:text-[var(--text-2)]'
+                    ? 'text-[var(--c-accent)] font-semibold'
+                    : 'text-[var(--c-text-secondary)] hover:text-[var(--c-text-primary)] font-medium'
                 )}
               >
                 <item.icon className="w-4 h-4" />
@@ -98,7 +96,7 @@ export function Header() {
                 {isActive && (
                   <motion.div
                     layoutId="nav-indicator"
-                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-[var(--accent)]"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-[var(--c-accent)]"
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   />
                 )}
@@ -112,7 +110,7 @@ export function Header() {
           {/* Team Selection Trigger */}
           <button
             onClick={() => setIsTeamPickerOpen(true)}
-            className="group relative w-10 h-10 flex items-center justify-center rounded-full bg-[var(--card)] border border-[var(--border)] hover:border-[var(--accent)]/50 transition-all active:scale-90"
+            className="group relative w-10 h-10 flex items-center justify-center rounded-full bg-[var(--c-bg-surface)] border border-[var(--c-border)] hover:border-[var(--c-border-strong)] transition-all active:scale-90"
             aria-label="Select Favorite Team"
           >
             {team ? (
@@ -120,17 +118,17 @@ export function Header() {
                 {team.flag}
               </span>
             ) : (
-              <Zap className="w-5 h-5 text-[var(--muted)] group-hover:text-[var(--accent)] transition-colors" />
+              <Zap className="w-5 h-5 text-[var(--c-text-tertiary)] group-hover:text-[var(--c-accent)] transition-colors" />
             )}
 
             {/* Pulsing indicator if no team selected */}
             {!team && (
-              <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[var(--accent)] animate-ping" />
+              <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[var(--c-accent)] animate-ping" />
             )}
           </button>
 
           <button
-            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[var(--card-hover)] transition-colors text-[var(--muted)] hover:text-[var(--text)]"
+            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[var(--c-bg-subtle)] transition-colors text-[var(--c-text-tertiary)] hover:text-[var(--c-text-primary)]"
             aria-label="Search"
           >
             <Search className="w-5 h-5" />

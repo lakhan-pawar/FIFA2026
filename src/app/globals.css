@@ -4,55 +4,96 @@
 
 @layer base {
   :root {
-    --bg: var(--team-bg, #08080e);
-    --bg-2: var(--team-bg-2, #0f0f18);
-    --bg-3: var(--team-bg-3, #161622);
-    --card: var(--team-card, #1a1a28);
-    --card-hover: var(--team-card-hover, #20202f);
-    --border: rgba(255, 255, 255, 0.07);
-    --border-hover: rgba(255, 255, 255, 0.14);
-    --text: #f0f0f8;
-    --text-2: #b0b0c8;
-    --muted: #5a5a78;
-    --accent: var(--team-primary, #00e5a0);
-    --accent-2: var(--team-secondary, #ff4d6d);
-    --accent-3: #7c3aed;
-    --live: #ff4444;
-    --gold: #ffd700;
-    --warning: #ff9f1c;
-    --ticker-text: #08080e;
-    --shadow: rgba(0, 0, 0, 0.5);
+    /* Backgrounds */
+    --c-bg-base:         #F7F6F2;   /* page background */
+    --c-bg-surface:      #FFFFFF;   /* cards, nav, modals */
+    --c-bg-subtle:       #EEECEA;   /* ticker, hover, footer */
 
-    color-scheme: dark;
-  }
+    /* Text */
+    --c-text-primary:    #1A1A18;   /* headings, nav, card titles */
+    --c-text-secondary:  #5F5E5A;   /* descriptions, subtitles */
+    --c-text-tertiary:   #888780;   /* timestamps, meta, placeholders */
 
-  .light {
-    --bg: var(--team-bg, #f4f4f8);
-    --bg-2: var(--team-bg-2, #ebebf5);
-    --bg-3: var(--team-bg-3, #e2e2f0);
-    --card: var(--team-card, #ffffff);
-    --card-hover: var(--team-card-hover, #f0f0f7);
-    --border: rgba(0, 0, 0, 0.08);
-    --border-hover: rgba(0, 0, 0, 0.15);
-    --text: #05050a;
-    --text-2: #3a3a50;
-    --muted: #707090;
-    --accent: var(--team-primary, #008f64);
-    --accent-2: var(--team-secondary, #d60032);
-    --accent-3: #5b21b6;
-    --live: #cc1111;
-    --gold: #a68b00;
-    --warning: #e67e22;
-    --ticker-text: #05050a;
-    --shadow: rgba(0, 0, 0, 0.1);
+    /* Accent (FIFA red) */
+    --c-accent:          #C8002A;   /* CTA buttons, active nav, highlights */
+    --c-accent-text:     #FFFFFF;   /* text ON accent background */
+    --c-accent-subtle:   #FCEBEB;   /* tinted accent background */
+    --c-accent-subtle-text: #7a0000;/* text on tinted accent bg */
+
+    /* Ticker */
+    --c-ticker-bg:       #d4f5e8;   /* ticker bar background */
+    --c-ticker-text:     #0a4a2e;   /* all text inside ticker */
+
+    /* Borders */
+    --c-border:          #D3D1C7;   /* cards, dividers, tables */
+    --c-border-strong:   #B4B2A9;   /* focused inputs, hover borders */
+
+    /* Status */
+    --c-live-bg:         #FCEBEB;
+    --c-live-text:       #A32D2D;
+    --c-success-bg:      #EAF3DE;
+    --c-success-text:    #27500A;
+    --c-info-bg:         #E6F1FB;
+    --c-info-text:       #0C447C;
+    --c-warning-bg:      #FAEEDA;
+    --c-warning-text:    #633806;
+
+    /* Legacy compatibility for components using old names */
+    --bg: var(--c-bg-base);
+    --bg-2: var(--c-bg-subtle);
+    --card: var(--c-bg-surface);
+    --border: var(--c-border);
+    --text: var(--c-text-primary);
+    --text-2: var(--c-text-secondary);
+    --muted: var(--c-text-tertiary);
+    --accent: var(--c-accent);
 
     color-scheme: light;
+  }
+
+  [data-theme="dark"], .dark {
+    /* Backgrounds */
+    --c-bg-base:         #161614;
+    --c-bg-surface: #222220;
+    --c-bg-subtle: #2C2C2A;
+
+    /* Text */
+    --c-text-primary: #F1EFE8;
+    --c-text-secondary: #B4B2A9;
+    --c-text-tertiary: #888780;
+
+    /* Accent */
+    --c-accent: #FF2D55;
+    --c-accent-text: #FFFFFF;
+    --c-accent-subtle: #3a0010;
+    --c-accent-subtle-text: #ffb3c1;
+
+    /* Ticker */
+    --c-ticker-bg: #0a2e1e;
+    --c-ticker-text: #d4f5e8;
+
+    /* Borders */
+    --c-border: #3A3A38;
+    --c-border-strong: #5F5E5A;
+
+    /* Status */
+    --c-live-bg: #5c0000;
+    --c-live-text: #ffb3b3;
+    --c-success-bg: #0d2e08;
+    --c-success-text: #9FE1CB;
+    --c-info-bg: #042C53;
+    --c-info-text: #85B7EB;
+    --c-warning-bg: #2e1a00;
+    --c-warning-text: #FAC775;
+
+    color-scheme: dark;
   }
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-family: var(--font-jakarta), 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 
   * {
@@ -60,14 +101,74 @@
   }
 
   body {
-    background-color: var(--bg);
-    color: var(--text);
-    font-family:
-      -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+    background-color: var(--c-bg-base);
+    color: var(--c-text-primary);
+    font-family: var(--font-jakarta), 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ── TYPE SCALE ── */
+  .hero-title {
+    font-size: 64px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+  }
+
+  .page-title {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .body-text {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.65;
+  }
+
+  .nav-link {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .ticker-text {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .meta-text {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .badge-text {
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .score-text {
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.0;
   }
 }
 

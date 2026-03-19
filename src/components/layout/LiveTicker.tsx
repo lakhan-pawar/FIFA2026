@@ -14,8 +14,8 @@ export function LiveTicker() {
   ];
 
   return (
-    <div className="w-full bg-[var(--accent)] text-[var(--ticker-text)] h-[28px] overflow-hidden flex items-center fixed top-0 left-0 right-0 z-50 shadow-sm">
-      <div className="whitespace-nowrap animate-ticker inline-block hover:[animation-play-state:paused] font-mono text-[11px] sm:text-[13px] font-bold tracking-wide">
+    <div className="w-full bg-[var(--c-ticker-bg)] text-[var(--c-ticker-text)] h-[28px] overflow-hidden flex items-center fixed top-0 left-0 right-0 z-50 shadow-sm border-b border-[var(--c-border)]">
+      <div className="whitespace-nowrap animate-ticker inline-block hover:[animation-play-state:paused] text-[13px] font-medium tracking-wide">
         {/* Render items twice for seamless loop */}
         {[...items, ...items, ...items].map((text, i) => (
           <span key={i} className="inline-flex items-center">

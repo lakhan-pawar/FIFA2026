@@ -218,7 +218,7 @@ export default function BracketsPage() {
   if (!isMounted) return null;
 
   return (
-    <div className="w-full max-w-[1300px] mx-auto px-4 py-8 pb-24 overflow-x-hidden">
+    <div className="w-full max-w-[1300px] mx-auto px-4 py-10 pb-24 overflow-x-hidden">
       {/* ── CONFETTI OVERLAY ── */}
       {showConfetti && (
         <div className="fixed inset-0 pointer-events-none z-50">
@@ -245,49 +245,49 @@ export default function BracketsPage() {
       )}
 
       {/* ── HEADER ── */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--gold)]/10 border border-[var(--gold)]/20 text-[10px] font-bold text-[var(--gold)] uppercase tracking-widest mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--c-gold)]/10 border border-[var(--c-gold)]/20 badge-text text-[var(--c-gold)] uppercase mb-3">
             Live Simulation Mode
           </div>
-          <h1 className="font-display text-4xl mb-1">
-            Tournament <span className="text-[var(--gold)]">Bracket</span>
+          <h1 className="page-title mb-2 text-[var(--c-text-primary)]">
+            Tournament <span className="text-[var(--c-gold)]">Bracket</span>
           </h1>
-          <p className="text-sm text-[var(--muted)]">
+          <p className="body-text text-[var(--c-text-secondary)]">
             Tap a team to pick the winner. Build your road to New Jersey.
           </p>
         </div>
         <div className="flex items-center gap-3">
           <button
             onClick={resetPredictions}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--card)] border border-[var(--border)] text-xs font-semibold hover:border-red-500/40 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--c-bg-surface)] border border-[var(--c-border)] badge-text text-[var(--c-text-tertiary)] hover:border-rose-500/40 transition-colors shadow-sm"
           >
             <RotateCcw className="w-3.5 h-3.5" /> Reset
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[var(--accent-3)] to-[var(--accent)] text-white text-xs font-bold shadow-lg shadow-[var(--accent)]/20 hover:scale-105 transition-transform">
+          <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[var(--c-accent)] to-[var(--c-accent)] text-[var(--c-accent-text)] badge-text shadow-lg shadow-[var(--c-accent)]/20 hover:scale-105 transition-transform border-0">
             <Network className="w-3.5 h-3.5" /> AI Simulate
           </button>
         </div>
       </div>
 
       {/* ── PROGRESS BAR ── */}
-      <div className="mb-8 p-4 rounded-2xl bg-[var(--card)] border border-[var(--border)]">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-bold text-[var(--text)]">
+      <div className="mb-10 p-5 rounded-xl bg-[var(--c-bg-surface)] border-[0.5px] border-[var(--c-border)] shadow-sm">
+        <div className="flex items-center justify-between mb-3">
+          <span className="badge-text text-[var(--c-text-primary)]">
             Bracket completion
           </span>
-          <span className="text-xs font-mono text-[var(--accent)]">
+          <span className="badge-text text-[var(--c-accent)] font-mono">
             {completedCount} / {TOTAL_MATCHES} matches
           </span>
         </div>
-        <div className="w-full h-2 rounded-full bg-[var(--bg-2)] overflow-hidden">
+        <div className="w-full h-2 rounded-full bg-[var(--c-bg-subtle)] overflow-hidden">
           <div
-            className="h-full rounded-full bg-gradient-to-r from-[var(--accent-3)] to-[var(--accent)] transition-all duration-500"
+            className="h-full rounded-full bg-gradient-to-r from-[var(--c-accent)] to-[var(--c-accent)] transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>
         {progress === 100 && (
-          <p className="text-xs text-[var(--accent)] font-bold mt-2">
+          <p className="badge-text text-[var(--c-accent)] mt-3">
             🎉 Bracket complete! Your prediction is saved.
           </p>
         )}
@@ -299,9 +299,9 @@ export default function BracketsPage() {
           {KNOCKOUT_PHASES.map((phase, phaseIdx) => (
             <div key={phase.key} className="flex flex-col">
               {/* Phase header */}
-              <div className="mb-4 text-center">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--card)] border border-[var(--border)] text-xs font-bold uppercase tracking-widest text-[var(--muted)]">
-                  <span className="text-[var(--gold)] font-mono">
+              <div className="mb-6 text-center">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--c-bg-surface)] border border-[var(--c-border)] badge-text text-[var(--c-text-tertiary)] shadow-sm uppercase">
+                  <span className="text-[var(--c-gold)] font-mono">
                     {phaseIdx + 1}
                   </span>
                   {phase.label}
@@ -320,7 +320,7 @@ export default function BracketsPage() {
                   return (
                     <div
                       key={match.id}
-                      className={`w-[200px] rounded-2xl border transition-all overflow-hidden ${winner ? 'border-[var(--gold)]/40 shadow-[0_0_15px_rgba(255,215,0,0.08)]' : 'border-[var(--border)] hover:border-[var(--border-hover)]'} bg-[var(--card)]`}
+                      className={`w-[200px] rounded-xl border-[0.5px] transition-all overflow-hidden ${winner ? 'border-[var(--c-gold)] shadow-lg shadow-[var(--c-gold)]/10' : 'border-[var(--c-border)]'} bg-[var(--c-bg-surface)]`}
                     >
                       {/* Slot A */}
                       <button
@@ -328,23 +328,23 @@ export default function BracketsPage() {
                           !isTbdA && selectWinner(match.id, labelA)
                         }
                         disabled={isTbdA}
-                        className={`w-full flex items-center gap-2 px-3 py-2.5 border-b border-[var(--border)]/50 transition-all text-left ${
+                        className={`w-full flex items-center gap-2 px-3 py-3 border-b [0.5px] border-[var(--c-border)] transition-all text-left ${
                           winner === labelA
-                            ? 'bg-[var(--gold)]/12 text-[var(--gold)]'
+                            ? 'bg-[var(--c-gold)]/10 text-[var(--c-gold)]'
                             : isTbdA
-                              ? 'opacity-40 cursor-default'
-                              : 'hover:bg-[var(--bg-2)] cursor-pointer'
+                              ? 'opacity-30 cursor-default'
+                              : 'hover:bg-[var(--c-bg-subtle)] cursor-pointer'
                         }`}
                       >
                         <div
-                          className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 transition-all ${winner === labelA ? 'bg-[var(--gold)] border-[var(--gold)]' : 'border-[var(--border)] bg-[var(--bg-2)]'}`}
+                          className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 transition-all ${winner === labelA ? 'bg-[var(--c-gold)] border-[var(--c-gold)]' : 'border-[var(--c-border)] bg-[var(--c-bg-subtle)]'}`}
                         >
                           {winner === labelA && (
                             <Trophy className="w-2.5 h-2.5 text-black" />
                           )}
                         </div>
                         <span
-                          className={`text-xs font-bold truncate leading-none ${winner === labelA ? 'text-[var(--gold)]' : 'text-[var(--text)]'}`}
+                          className={`badge-text truncate leading-none ${winner === labelA ? 'text-[var(--c-gold)]' : 'text-[var(--c-text-primary)]'}`}
                         >
                           {isTbdA ? 'TBD' : labelA}
                         </span>
@@ -356,32 +356,32 @@ export default function BracketsPage() {
                           !isTbdB && selectWinner(match.id, labelB)
                         }
                         disabled={isTbdB}
-                        className={`w-full flex items-center gap-2 px-3 py-2.5 transition-all text-left ${
+                        className={`w-full flex items-center gap-2 px-3 py-3 transition-all text-left ${
                           winner === labelB
-                            ? 'bg-[var(--gold)]/12 text-[var(--gold)]'
+                            ? 'bg-[var(--c-gold)]/10 text-[var(--c-gold)]'
                             : isTbdB
-                              ? 'opacity-40 cursor-default'
-                              : 'hover:bg-[var(--bg-2)] cursor-pointer'
+                              ? 'opacity-30 cursor-default'
+                              : 'hover:bg-[var(--c-bg-subtle)] cursor-pointer'
                         }`}
                       >
                         <div
-                          className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 transition-all ${winner === labelB ? 'bg-[var(--gold)] border-[var(--gold)]' : 'border-[var(--border)] bg-[var(--bg-2)]'}`}
+                          className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 transition-all ${winner === labelB ? 'bg-[var(--c-gold)] border-[var(--c-gold)]' : 'border-[var(--c-border)] bg-[var(--c-bg-subtle)]'}`}
                         >
                           {winner === labelB && (
                             <Trophy className="w-2.5 h-2.5 text-black" />
                           )}
                         </div>
                         <span
-                          className={`text-xs font-bold truncate leading-none ${winner === labelB ? 'text-[var(--gold)]' : 'text-[var(--text)]'}`}
+                          className={`badge-text truncate leading-none ${winner === labelB ? 'text-[var(--c-gold)]' : 'text-[var(--c-text-primary)]'}`}
                         >
                           {isTbdB ? 'TBD' : labelB}
                         </span>
                       </button>
 
                       {/* Footer */}
-                      <div className="px-3 py-1.5 flex items-center gap-1 bg-[var(--bg-2)]/50">
-                        <MapPin className="w-2.5 h-2.5 text-[var(--muted)] shrink-0" />
-                        <span className="text-[9px] text-[var(--muted)] truncate">
+                      <div className="px-3 py-1.5 flex items-center gap-1 bg-[var(--c-bg-subtle)]/50">
+                        <MapPin className="w-2.5 h-2.5 text-[var(--c-text-tertiary)] shrink-0" />
+                        <span className="meta-text text-[var(--c-text-tertiary)] truncate">
                           {match.city} · {match.date}
                         </span>
                       </div>
@@ -396,13 +396,13 @@ export default function BracketsPage() {
 
       {/* ── CHAMPION REVEAL ── */}
       {champion && (
-        <div className="mt-8 max-w-sm mx-auto p-8 rounded-[40px] bg-gradient-to-br from-[var(--gold)]/20 via-[var(--card)] to-[var(--bg)] border-2 border-[var(--gold)]/50 text-center shadow-2xl relative overflow-hidden group">
-          <div className="absolute inset-0 bg-[var(--gold)]/5 blur-3xl" />
-          <Trophy className="w-16 h-16 text-[var(--gold)] mx-auto mb-4 relative z-10 drop-shadow-[0_0_20px_rgba(255,215,0,0.6)]" />
-          <h2 className="text-3xl font-display mb-1 relative z-10">
+        <div className="mt-12 max-w-sm mx-auto p-10 rounded-xl bg-[var(--c-bg-surface)] border-2 border-[var(--c-gold)] text-center shadow-2xl relative overflow-hidden group">
+          <div className="absolute inset-0 bg-[var(--c-gold)]/5 blur-3xl" />
+          <Trophy className="w-16 h-16 text-[var(--c-gold)] mx-auto mb-4 relative z-10 drop-shadow-xl" />
+          <h2 className="page-title mb-2 relative z-10 text-[var(--c-text-primary)]">
             {champion}
           </h2>
-          <div className="text-xs font-bold text-[var(--gold)] tracking-widest uppercase relative z-10">
+          <div className="badge-text text-[var(--c-gold)] uppercase relative z-10 font-bold">
             Your 2026 World Champion 🏆
           </div>
         </div>

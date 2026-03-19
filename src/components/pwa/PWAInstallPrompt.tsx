@@ -101,27 +101,27 @@ export function PWAInstallPrompt() {
 
   return (
     <div className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:max-w-sm">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-4">
+      <div className="bg-[var(--c-bg-surface)] rounded-xl shadow-lg border-[0.5px] border-[var(--c-border)] p-4">
         <div className="flex items-start justify-between">
           <div className="flex-1">
             <div className="flex items-center mb-2">
-              <ArrowDownTrayIcon className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2" />
-              <h3 className="font-display text-lg mb-1">Install KickoffTo</h3>
+              <ArrowDownTrayIcon className="h-5 w-5 text-[var(--c-accent)] mr-2" />
+              <h3 className="card-title text-[var(--c-text-primary)]">Install KickoffTo</h3>
             </div>
-            <p className="text-xs text-gray-600 dark:text-gray-300 mb-3">
+            <p className="body-text text-[var(--c-text-secondary)] mb-3">
               Get the full experience with offline access and faster loading
               times.
             </p>
             <div className="flex space-x-2">
               <button
                 onClick={handleInstallClick}
-                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium py-2 px-3 rounded-md transition-colors"
+                className="flex-1 bg-[var(--c-accent)] hover:opacity-90 text-[var(--c-accent-text)] badge-text py-2 px-3 rounded-lg transition-colors border-0"
               >
                 Install App
               </button>
               <button
                 onClick={handleDismiss}
-                className="flex-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 text-xs font-medium py-2 px-3 rounded-md transition-colors"
+                className="flex-1 bg-[var(--c-bg-subtle)] hover:bg-[var(--c-bg-subtle)]/80 text-[var(--c-text-secondary)] badge-text py-2 px-3 rounded-lg transition-colors border-0"
               >
                 Not Now
               </button>
@@ -129,7 +129,7 @@ export function PWAInstallPrompt() {
           </div>
           <button
             onClick={handleDismiss}
-            className="ml-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+            className="ml-2 text-[var(--c-text-tertiary)] hover:text-[var(--c-text-primary)]"
           >
             <XMarkIcon className="h-4 w-4" />
           </button>

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
-import localFont from 'next/font/local';
+import { Plus_Jakarta_Sans } from 'next/font/google';
+
 import './globals.css';
 import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { Header } from '@/components/layout/Header';
@@ -8,15 +9,11 @@ import { BottomNav } from '@/components/layout/BottomNav';
 import { PageTransition } from '@/components/layout/PageTransition';
 import { FavoriteTeamProvider } from '@/context/FavoriteTeamContext';
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-jakarta',
+  display: 'swap',
 });
 
 export const viewport: Viewport = {
@@ -55,7 +52,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-body bg-[var(--bg)] text-[var(--text)] antialiased min-h-screen overflow-x-hidden`}
+        className={`${jakarta.variable} font-body bg-[var(--c-bg-base)] text-[var(--c-text-primary)] antialiased min-h-screen overflow-x-hidden`}
       >
         <ThemeProvider>
           <div

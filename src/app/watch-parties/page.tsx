@@ -91,12 +91,12 @@ function VenueCard({
   const rush = RUSH_CONFIG[vibe.rush];
 
   return (
-    <div className="group p-5 rounded-2xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--border-hover)] transition-all">
+    <div className="group p-5 rounded-xl bg-[var(--c-bg-surface)] border-[0.5px] border-[var(--c-border)] hover:border-[var(--c-accent)]/30 transition-all shadow-sm">
       {/* Top row */}
-      <div className="flex items-start justify-between gap-3 mb-3">
+      <div className="flex items-start justify-between gap-3 mb-4">
         <div className="flex-1 min-w-0">
-          <h3 className="font-display text-lg mb-0.5 truncate">{venue.name}</h3>
-          <p className="text-xs text-[var(--muted)] truncate">
+          <h3 className="card-title text-[var(--c-text-primary)] mb-1 truncate">{venue.name}</h3>
+          <p className="meta-text text-[var(--c-text-tertiary)] truncate">
             📍 {venue.address}
           </p>
         </div>
@@ -125,7 +125,7 @@ function VenueCard({
             {vibe.rush}
           </div>
           {distance !== undefined && (
-            <span className="text-[10px] font-medium text-[var(--accent)] bg-[var(--accent)]/10 px-2 py-0.5 rounded-full">
+            <span className="badge-text text-[var(--c-accent)] bg-[var(--c-accent-subtle)] px-2 py-0.5 rounded-full border border-[var(--c-accent)]/10">
               {distance < 1
                 ? `${Math.round(distance * 1000)}m`
                 : `${distance.toFixed(1)}km`}
@@ -135,7 +135,7 @@ function VenueCard({
       </div>
 
       {/* Vibe Score */}
-      <div className="flex items-center gap-2 mb-3">
+      <div className="flex items-center gap-2 mb-4">
         <div className="flex gap-0.5">
           {Array.from({ length: 5 }).map((_, i) => (
             <span
@@ -146,18 +146,18 @@ function VenueCard({
             </span>
           ))}
         </div>
-        <span className="text-[10px] text-[var(--muted)]">Vibe Score</span>
-        <span className="text-[10px] text-[var(--muted)] ml-auto">
+        <span className="meta-text text-[var(--c-text-tertiary)]">Vibe Score</span>
+        <span className="meta-text text-[var(--c-text-tertiary)] ml-auto">
           Max fans: {venue.capacity}
         </span>
       </div>
 
       {/* Amenities */}
-      <div className="flex flex-wrap gap-1.5">
+      <div className="flex flex-wrap gap-2">
         {venue.amenities.map((a) => (
           <span
             key={a}
-            className="flex items-center gap-1 text-[10px] text-[var(--text-2)] bg-[var(--bg-2)] px-2 py-1 rounded-full border border-[var(--border)]"
+            className="flex items-center gap-1.5 badge-text text-[var(--c-text-secondary)] bg-[var(--c-bg-subtle)] px-2.5 py-1 rounded-lg border border-[var(--c-border)]"
           >
             {amenityIcons[a] ?? <Wifi className="w-3 h-3" />}
             {a}
@@ -199,29 +199,29 @@ export default function MapPage() {
   }, [venuesWithDistance, sortBy, location]);
 
   return (
-    <div className="w-full max-w-[800px] mx-auto px-4 py-8 pb-24">
+    <div className="w-full max-w-[800px] mx-auto px-4 py-10 pb-24">
       {/* ── HEADER ── */}
-      <div className="mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#cc0000]/10 border border-[#cc0000]/20 text-[10px] font-bold text-[#ff4d6d] uppercase tracking-widest mb-4">
+      <div className="mb-10">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 badge-text text-rose-500 uppercase mb-4">
           🍁 Toronto, Canada
         </div>
-        <h1 className="font-display text-4xl mb-2">
-          Watch <span className="text-[#ff4d6d]">Parties</span>
+        <h1 className="page-title mb-2 text-[var(--c-text-primary)]">
+          Watch <span className="text-rose-500">Parties</span>
         </h1>
-        <p className="text-sm text-[var(--muted)] max-w-md">
+        <p className="body-text text-[var(--c-text-secondary)] max-w-md">
           Find the best spots in Toronto to watch WC 2026. Sorted by vibe —
           because atmosphere matters as much as the scoreline.
         </p>
       </div>
 
       {/* ── LEGEND ── */}
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-wrap gap-2 mb-8">
         {(
           Object.entries(RUSH_CONFIG) as [string, typeof RUSH_CONFIG.Chill][]
         ).map(([label, cfg]) => (
           <div
             key={label}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold border"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full badge-text border"
             style={{
               color: cfg.color,
               background: cfg.bg,
@@ -237,20 +237,20 @@ export default function MapPage() {
             {label}
           </div>
         ))}
-        <span className="text-[10px] text-[var(--muted)] flex items-center ml-1">
+        <span className="meta-text text-[var(--c-text-tertiary)] flex items-center ml-1">
           crowd level
         </span>
       </div>
 
       {/* ── CONTROLS ── */}
-      <div className="flex items-center gap-2 mb-6 flex-wrap">
+      <div className="flex items-center gap-2 mb-8 flex-wrap">
         <button
           onClick={() => {
             getCurrentPosition();
             setSortBy('distance');
           }}
           disabled={loading}
-          className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium bg-[#ff4d6d] text-white hover:brightness-110 active:scale-95 transition-all touch-manipulation disabled:opacity-50"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-rose-500 text-white hover:bg-rose-600 active:scale-95 transition-all touch-manipulation disabled:opacity-50 shadow-lg shadow-rose-500/20"
         >
           <Navigation className="w-4 h-4" />
           {loading ? 'Locating...' : 'Nearest to Me'}
@@ -260,10 +260,10 @@ export default function MapPage() {
             key={s}
             onClick={() => setSortBy(s)}
             disabled={s === 'distance' && !location}
-            className={`px-3 py-2 rounded-full text-xs font-medium transition-all touch-manipulation active:scale-95 ${
+            className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all touch-manipulation active:scale-[0.98] border shadow-sm ${
               sortBy === s
-                ? 'bg-[var(--text)] text-[var(--bg)]'
-                : 'bg-[var(--card)] text-[var(--muted)] border border-[var(--border)] disabled:opacity-30'
+                ? 'bg-[var(--c-text-primary)] text-[var(--c-bg-surface)] border-[var(--c-text-primary)]'
+                : 'bg-[var(--c-bg-surface)] text-[var(--c-text-tertiary)] border-[var(--c-border)] hover:border-[var(--c-accent)]/40 disabled:opacity-30'
             }`}
           >
             {s === 'vibe'
@@ -276,15 +276,15 @@ export default function MapPage() {
       </div>
 
       {/* ── VENUE STATS ── */}
-      <div className="flex items-center gap-3 mb-6 p-3 rounded-xl bg-[var(--card)] border border-[var(--border)]">
-        <Users className="w-4 h-4 text-[var(--accent)]" />
-        <span className="text-xs font-medium text-[var(--text)]">
-          {VENUES.length} venues
+      <div className="flex items-center gap-3 mb-8 p-4 rounded-xl bg-[var(--c-bg-surface)] border-[0.5px] border-[var(--c-border)] shadow-sm">
+        <Users className="w-5 h-5 text-[var(--c-accent)]" />
+        <span className="body-text text-[var(--c-text-primary)] font-semibold">
+          {VENUES.length} venues found
         </span>
-        <span className="text-[var(--muted)] text-xs">·</span>
-        <span className="text-xs text-[var(--muted)]">Toronto, ON</span>
-        <span className="ml-auto text-[10px] text-[var(--muted)]">
-          Simulated crowd data
+        <span className="text-[var(--c-text-tertiary)]">·</span>
+        <span className="body-text text-[var(--c-text-tertiary)]">Toronto, ON</span>
+        <span className="ml-auto meta-text text-[var(--c-text-tertiary)] opacity-60 uppercase">
+          Simulated crowd
         </span>
       </div>
 

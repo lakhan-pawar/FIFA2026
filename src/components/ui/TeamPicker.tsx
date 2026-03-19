@@ -27,45 +27,45 @@ export function TeamPicker({ isOpen, onClose }: TeamPickerProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/80 backdrop-blur-md"
+            className="absolute inset-0 bg-[#000000]/60 backdrop-blur-md"
           />
 
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 30 }}
-            className="relative w-full max-w-xl bg-[var(--card)] border border-[var(--border)] rounded-[40px] shadow-[0_32px_128px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col max-h-[90vh]"
+            className="relative w-full max-w-xl bg-[var(--c-bg-surface)] border-[0.5px] border-[var(--c-border)] rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
           >
             {/* Header */}
-            <div className="p-8 border-b border-[var(--border)] flex items-center justify-between shrink-0 bg-gradient-to-br from-[var(--card)] to-[var(--bg)]">
+            <div className="p-8 border-b border-[var(--c-border)] flex items-center justify-between shrink-0 bg-[var(--c-bg-subtle)]">
               <div>
-                <h2 className="font-display text-3xl text-[var(--text)] font-bold tracking-tight">
+                <h2 className="section-title text-[var(--c-text-primary)]">
                   Choose Your{' '}
-                  <span className="text-[var(--accent)] italic">Legacy</span>
+                  <span className="text-[var(--c-accent)] italic">Legacy</span>
                 </h2>
-                <p className="text-sm text-[var(--muted)] mt-1 font-medium">
+                <p className="body-text text-[var(--c-text-secondary)] mt-1">
                   Elevate your WC2026 journey with a team-specific skin.
                 </p>
               </div>
               <button
                 onClick={onClose}
-                className="w-12 h-12 flex items-center justify-center rounded-full hover:bg-[var(--bg-2)] transition-all active:scale-90 border border-[var(--border)]"
+                className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[var(--c-bg-surface)] transition-all active:scale-90 border border-[var(--c-border)] text-[var(--c-text-primary)]"
                 aria-label="Close"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Search Bar */}
-            <div className="p-6 bg-[var(--bg-2)]/30 backdrop-blur-md shrink-0">
+            <div className="p-6 bg-[var(--c-bg-subtle)]/50 backdrop-blur-sm shrink-0">
               <div className="relative group">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--muted)] group-focus-within:text-[var(--accent)] transition-colors" />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--c-text-tertiary)] group-focus-within:text-[var(--c-accent)] transition-colors" />
                 <input
                   type="text"
                   placeholder="Search your nation..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="w-full bg-[var(--card)] border border-[var(--border)] rounded-2xl py-4 pl-12 pr-6 text-base outline-none focus:border-[var(--accent)]/50 focus:ring-4 focus:ring-[var(--accent)]/5 transition-all font-semibold"
+                  className="w-full bg-[var(--c-bg-surface)] border border-[var(--c-border)] rounded-lg py-4 pl-12 pr-6 text-base outline-none focus:border-[var(--c-accent)]/50 focus:ring-2 focus:ring-[var(--c-accent)]/5 transition-all font-semibold text-[var(--c-text-primary)]"
                 />
               </div>
             </div>
@@ -90,7 +90,7 @@ export function TeamPicker({ isOpen, onClose }: TeamPickerProps) {
                       {team.flag}
                     </div>
                     <div className="flex-1 min-w-0 relative z-10">
-                      <div className="font-bold text-base tracking-tight truncate">
+                      <div className="card-title text-[var(--c-text-primary)] truncate">
                         {team.name}
                       </div>
                       <div className="flex gap-1.5 mt-2">
@@ -105,7 +105,7 @@ export function TeamPicker({ isOpen, onClose }: TeamPickerProps) {
                       </div>
                     </div>
                     {teamId === team.id && (
-                      <div className="relative z-10 w-6 h-6 rounded-full bg-[var(--accent)] text-black flex items-center justify-center shadow-lg">
+                      <div className="relative z-10 w-6 h-6 rounded-full bg-[var(--c-accent)] text-[var(--c-accent-text)] flex items-center justify-center shadow-lg">
                         <Check className="w-4 h-4 stroke-[3px]" />
                       </div>
                     )}
