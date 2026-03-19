@@ -59,7 +59,7 @@ export function Header() {
   return (
     <header
       className={cn(
-        'sticky top-[28px] z-50 transition-all duration-300 w-full h-[58px] border-b border-[var(--c-border)] bg-[var(--c-bg-surface)]',
+        'sticky top-0 md:top-[28px] z-50 transition-all duration-300 w-full h-[58px] border-b border-[var(--c-border)] bg-[var(--c-bg-surface)] hidden md:block',
         scrolled && 'shadow-sm'
       )}
     >

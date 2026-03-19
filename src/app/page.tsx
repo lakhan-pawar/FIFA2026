@@ -150,11 +150,21 @@ export default function Home() {
           <span className="hero-gradient-text block">BEAUTIFUL GAME</span>
         </h1>
 
-        <p className="relative z-10 text-[18px] text-[var(--c-text-secondary)] font-medium max-w-2xl mb-10 leading-relaxed px-4">
+        <p className="relative z-10 text-[18px] text-[var(--c-text-secondary)] font-medium max-w-2xl mb-4 leading-relaxed px-4">
           {team
             ? `Track ${team.name}'s journey to the finals with AI-powered tactical depth and real-time insights.`
             : 'Experience the first 48-team World Cup with AI-powered tactical insights, real-time pulse, and your elite scouting inner circle.'}
         </p>
+
+        {/* Goal Badge below subtitle */}
+        <div className="relative z-10 mb-8">
+          <button
+            onClick={triggerGoalDemo}
+            className="px-3 py-1 rounded-full bg-[var(--c-accent-subtle)] border border-[var(--c-accent-subtle)] text-[10px] font-bold text-[var(--c-accent-subtle-text)] hover:opacity-80 transition-all flex items-center gap-1.5 mx-auto"
+          >
+            <span className="animate-pulse">⚽</span> GOAL!
+          </button>
+        </div>
 
         {/* Countdown */}
         {mounted && (
@@ -186,35 +196,29 @@ export default function Home() {
         )}
 
         {/* CTAs */}
-        <div className="relative z-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+        <div className="relative z-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-6 sm:px-0">
           <Link
             href="/agents"
-            className="px-7 py-3 bg-[var(--c-accent)] text-[var(--c-accent-text)] rounded-lg text-[15px] font-semibold hover:opacity-90 transition-all shadow-lg active:scale-95 flex items-center justify-center"
+            className="w-full sm:w-auto px-10 py-4 bg-[var(--c-accent)] text-[var(--c-accent-text)] rounded-xl text-[15px] font-bold hover:opacity-95 transition-all shadow-xl shadow-[var(--c-accent)]/20 active:scale-95 flex items-center justify-center"
           >
-            Meet Your AI Elite
+            Chat with AI
           </Link>
           <Link
-            href="/schedule"
-            className="px-7 py-3 bg-transparent border-[1.5px] border-[var(--c-accent)] text-[var(--c-accent)] rounded-lg text-[15px] font-semibold hover:bg-[var(--c-accent)]/5 transition-all shadow-sm active:scale-95 flex items-center justify-center"
+            href="/brackets"
+            className="w-full sm:w-auto px-10 py-4 bg-transparent border-[1.5px] border-[var(--c-accent)] text-[var(--c-accent)] rounded-xl text-[15px] font-bold hover:bg-[var(--c-accent)]/5 transition-all active:scale-95 flex items-center justify-center"
           >
-            Explore KickoffTo
+            Predict Bracket
           </Link>
-          {/* Goal Demo Trigger */}
-          <button
-            onClick={triggerGoalDemo}
-            className="px-4 py-3 bg-[var(--c-accent-subtle)] border border-[var(--c-accent-subtle)] text-[var(--c-accent-subtle-text)] rounded-lg text-[11px] font-bold hover:opacity-80 transition-all shadow-sm active:scale-95"
-            title="Trigger goal celebration demo"
-          >
-            ⚽ GOAL!
-          </button>
         </div>
       </section>
 
       {/* ── PULSE STRIP ── */}
-      <section className="relative px-0 py-8 overflow-hidden border-y border-[var(--border)] bg-[var(--card)]/10">
+      <section className="relative px-0 py-8 overflow-hidden border-y border-[var(--c-border)] bg-[var(--c-bg-subtle)]/30">
         {contentLoading ? (
-          <div className="py-2">
-            <BallRollingLoader size="md" label="Updating statistics..." />
+          <div className="flex gap-3 overflow-x-auto no-scrollbar px-6 md:justify-center">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="shrink-0 w-[110px] sm:w-[120px] h-24 rounded-xl bg-[var(--c-bg-surface)] border border-[var(--c-border)] animate-pulse shadow-sm" />
+            ))}
           </div>
         ) : (
           <div className="flex gap-3 overflow-x-auto no-scrollbar scrollbar-hide px-6 pb-1 md:justify-center animate-in fade-in duration-700">
@@ -255,7 +259,7 @@ export default function Home() {
             />
             <Link
               href="/agents"
-              className="text-[10px] font-bold uppercase tracking-widest text-[var(--muted)] hover:text-[var(--text)] transition-colors"
+              className="text-[10px] font-bold uppercase tracking-widest text-[var(--c-text-tertiary)] hover:text-[var(--c-text-primary)] transition-colors"
             >
               All 8 agents →
             </Link>
@@ -263,9 +267,7 @@ export default function Home() {
         </div>
 
         {contentLoading ? (
-          <div className="py-20 flex justify-center">
-            <BallRollingLoader size="lg" label="Waking up the experts..." />
-          </div>
+          <div className="w-full h-48 rounded-xl bg-[var(--c-bg-surface)] border border-[var(--c-border)] animate-pulse shadow-sm" />
         ) : (
           featuredAgent && (
             <Link
